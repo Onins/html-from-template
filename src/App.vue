@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <form enctype="multipart/form-data">
-        <input type="file" @change="onFileChange">
-        <a @click="downloadHtml()">Button</a>
+      <input type="file" @change="onFileChange">
+      <button @click="downloadHtml()">Generate Files</button>
     </form>
   </div>
 </template>
@@ -78,3 +78,21 @@ export default {
   }
 }
 </script>
+
+<style>
+form {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 20px 0;
+}
+
+button {
+  cursor: pointer;
+  width: 200px;
+  margin-top: 40px;
+}
+</style>>
