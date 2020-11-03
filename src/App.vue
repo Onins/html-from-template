@@ -2,7 +2,7 @@
   <div id="app">
     <form enctype="multipart/form-data">
       <input type="file" @change="onFileChange">
-      <button @click="downloadHtml()">Generate Files</button>
+      <a @click="downloadHtml()">Generate Files</a>
     </form>
   </div>
 </template>
@@ -90,9 +90,15 @@ form {
   padding: 20px 0;
 }
 
-button {
+a {
   cursor: pointer;
-  width: 200px;
+  width: 120px;
+  text-align: center;
   margin-top: 40px;
+  background-color: #a9ffa9;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #bdb7b7;
+  font-family: sans-serif;
 }
 </style>>
