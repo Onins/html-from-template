@@ -46,8 +46,7 @@ export default class whm {
   
   getTemplate()
   {
-    return `
-<!DOCTYPE html>
+    return `<!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
@@ -867,7 +866,6 @@ http://www.omniture.com -->
     </noscript>
     <!-- End Yahoo Tag Manager -->
   </body>
-</html>
-    `;
+</html>`;
   }
 }
