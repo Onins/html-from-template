@@ -45,7 +45,7 @@ export default {
 
           for(let i=1;i<lines.length - 1;i++){
             let obj = {};
-            let currentline=lines[i].split(",");
+            let currentline=lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);            
 
             for(let j=0;j<headers.length;j++){
               obj[headers[j]] = currentline[j];
@@ -63,7 +63,7 @@ export default {
       let zip = new JSZip();
       let vm = this;
       for(let i = 0; i < vm.jsonoutput.length; i++) {
-        zip.file(`${vm.jsonoutput[i].destination}.html`, this.updateTemplate(vm.jsonoutput[i]));
+        zip.file(`${vm.jsonoutput[i].destination.replace(/"/g,"")}.html`, this.updateTemplate(vm.jsonoutput[i]));
       }
       zip.generateAsync({type:"blob"})
       .then(function(content) {          

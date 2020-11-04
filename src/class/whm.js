@@ -11,6 +11,7 @@ export default class whm {
     this.airplane = airplane;
     this.destination = destination;
   }
+  
   getTemplate()
   {
     return `
@@ -19,7 +20,7 @@ export default class whm {
         <p>Month = ${this.month}</p>
         <p>Airport = ${this.airport}</p>
         <p>Plane = ${this.airplane}</p
-        <p>Destination = ${this.destination}</p>
+        <p>Destination = ${this.destination.replace(/"/g,"")}</p>
       </html>
     `;
   }
