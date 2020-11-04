@@ -11,6 +11,7 @@
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
 import WorldHeritage from "./class/whm.js"
+import csv from "csvtojson"
 
 export default {
   name: "App",
@@ -39,19 +40,24 @@ export default {
       });
 
       promise.then(
-        () => {
-          let lines=vm.fileinput.split("\n");
-          let headers=lines[0].split(",");
+        () => {          
+          csv({
+            noheader:true,
+            output: "csv"            
+          })
+          .fromString(vm.fileinput)
+          .then((csvRow)=>{ 
+            let headers=csvRow[0];
+            for(let i=1;i<csvRow.length;i++){
+              let obj = {};
+              let currentline=csvRow[i];            
 
-          for(let i=1;i<lines.length - 1;i++){
-            let obj = {};
-            let currentline=lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);            
-
-            for(let j=0;j<headers.length;j++){
-              obj[headers[j]] = currentline[j];
+              for(let j=0;j<headers.length;j++){
+                obj[headers[j]] = currentline[j];
+              }
+              this.jsonoutput.push(obj);
             }
-            this.jsonoutput.push(JSON.parse(JSON.stringify(obj).replace(/\\n|\\r/g, '')));
-          }
+          })
         },
         error => {
           console.log(error);
