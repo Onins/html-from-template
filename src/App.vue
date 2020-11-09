@@ -69,7 +69,7 @@ export default {
       let zip = new JSZip();
       let vm = this;
       for(let i = 0; i < vm.jsonOutput.length; i++) {
-        zip.file(`${vm.jsonOutput[i].worldHeritageRegisteredName}.html`, this.updateTemplate(vm.jsonOutput[i]));
+        zip.file(`${vm.jsonOutput[i].englishPass}.html`, this.updateTemplate(vm.jsonOutput[i]));
       }
       zip.generateAsync({type:"blob"})
       .then(function(content) {          
@@ -78,7 +78,7 @@ export default {
     },
 
     updateTemplate(data) {
-      let country = new WorldHeritage(data.bigArea, data.country, data.seoKeyword, data.worldHeritageRegisteredName, data.metaDescription, data.metaKeywords, data.name, data.headline, data.explainatoryText, data.staffRecommendedPoints, data.heritageType, data.registrationAndExpansionYear, data.timeDifferenceWithJapan, data.bestSeason, data.flightTime, data.tourAverageBudget, data.estimatedTravelDays, data.directionsFromJapanDetails, data.HISOverseasBranchName, data.HISOverseasBranchSite);
+      let country = new WorldHeritage(data.bigAreaJP, data.bigAreaEN, data.countryJP, data.countryEN, data.seoKeyword, data.worldHeritageRegisteredName, data.englishPass, data.imagePass, data.metaDescription, data.metaKeywords, data.name, data.headline, data.explainatoryText, data.staffRecommendedPoints, data.heritageType, data.registrationAndExpansionYear, data.timeDifferenceWithJapan, data.bestSeason, data.flightTime, data.tourAverageBudget, data.estimatedTravelDays, data.directionsFromJapanDetails, data.HISOverseasBranchName, data.HISOverseasBranchSite);
       return country.getTemplate(); 
     }
   }
