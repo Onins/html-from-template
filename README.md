@@ -1,4 +1,4 @@
-# html-from-template
+# WHM Automation
 
 ## Project setup
 ```

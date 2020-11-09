@@ -17,14 +17,14 @@ export default {
   name: "App",
   data() {
     return {
-      fileinput: '',
-      jsonoutput: []
+      fileInput: '',
+      jsonOutput: []
     }
   },
   methods: {
     onFileChange(e) {
-      this.jsonoutput = [];
-      this.fileinput = "";
+      this.jsonOutput = [];
+      this.fileInput = "";
       var file = e.target.files;
       this.createInput(file[0]);
     },
@@ -34,7 +34,7 @@ export default {
       let promise = new Promise((resolve) => {
         let reader = new FileReader();
         reader.onload = () => {
-          resolve((vm.fileinput = reader.result));
+          resolve((vm.fileInput = reader.result));
         };
         reader.readAsText(file);
       });
@@ -45,7 +45,7 @@ export default {
             noheader:true,
             output: "csv"            
           })
-          .fromString(vm.fileinput)
+          .fromString(vm.fileInput)
           .then((csvRow)=>{ 
             let headers=csvRow[0];
             for(let i=1;i<csvRow.length;i++){
@@ -55,7 +55,7 @@ export default {
               for(let j=0;j<headers.length;j++){
                 obj[headers[j]] = currentline[j];
               }
-              this.jsonoutput.push(obj);
+              this.jsonOutput.push(obj);
             }
           })
         },
@@ -68,8 +68,8 @@ export default {
     downloadHtml() {  
       let zip = new JSZip();
       let vm = this;
-      for(let i = 0; i < vm.jsonoutput.length; i++) {
-        zip.file(`${vm.jsonoutput[i].worldHeritageRegisteredName}.html`, this.updateTemplate(vm.jsonoutput[i]));
+      for(let i = 0; i < vm.jsonOutput.length; i++) {
+        zip.file(`${vm.jsonOutput[i].worldHeritageRegisteredName}.html`, this.updateTemplate(vm.jsonOutput[i]));
       }
       zip.generateAsync({type:"blob"})
       .then(function(content) {          
