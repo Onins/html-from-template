@@ -40,17 +40,17 @@ export default {
       });
 
       promise.then(
-        () => {          
+        () => {
           csv({
             noheader:true,
-            output: "csv"            
+            output: "csv"
           })
           .fromString(vm.fileInput)
-          .then((csvRow)=>{ 
+          .then((csvRow)=>{
             let headers=csvRow[0];
             for(let i=1;i<csvRow.length;i++){
               let obj = {};
-              let currentline=csvRow[i];            
+              let currentline=csvRow[i];
 
               for(let j=0;j<headers.length;j++){
                 obj[headers[j]] = currentline[j];
@@ -65,21 +65,22 @@ export default {
       );
     },
 
-    downloadHtml() {  
+    downloadHtml() {
       let zip = new JSZip();
       let vm = this;
       for(let i = 0; i < vm.jsonOutput.length; i++) {
         zip.file(`${vm.jsonOutput[i].englishPass}.html`, this.updateTemplate(vm.jsonOutput[i]));
       }
       zip.generateAsync({type:"blob"})
-      .then(function(content) {          
+      .then(function(content) {
         saveAs(content, "world-heritage.zip");
-      });       
+      });
     },
 
     updateTemplate(data) {
       let country = new WorldHeritage(data.bigAreaJP, data.bigAreaEN, data.countryJP, data.countryEN, data.seoKeyword, data.worldHeritageRegisteredName, data.englishPass, data.imagePass, data.metaDescription, data.metaKeywords, data.name, data.headline, data.explainatoryText, data.staffRecommendedPoints, data.heritageType, data.registrationAndExpansionYear, data.timeDifferenceWithJapan, data.bestSeason, data.flightTime, data.tourAverageBudget, data.estimatedTravelDays, data.directionsFromJapanDetails, data.HISOverseasBranchName, data.HISOverseasBranchSite);
-      return country.getTemplate(); 
+      data.explainatoryText = country.formatParagraph(data.explainatoryText);
+      return country.getTemplate();
     }
   }
 }

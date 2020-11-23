@@ -24,7 +24,7 @@ export default class whm {
   HISOverseasBranchName = "";
   HISOverseasBranchSite = "";
 
-  constructor(bigAreaJP, bigAreaEN, countryJP, countryEN, seoKeyword, worldHeritageRegisteredName, englishPass, imagePass, metaDescription, metaKeywords, name, headline, explainatoryText, staffRecommendedPoints, heritageType, registrationAndExpansionYear, timeDifferenceWithJapan, bestSeason, flightTime, tourAverageBudget, estimatedTravelDays, directionsFromJapanDetails, HISOverseasBranchName, HISOverseasBranchSite) 
+  constructor(bigAreaJP, bigAreaEN, countryJP, countryEN, seoKeyword, worldHeritageRegisteredName, englishPass, imagePass, metaDescription, metaKeywords, name, headline, explainatoryText, staffRecommendedPoints, heritageType, registrationAndExpansionYear, timeDifferenceWithJapan, bestSeason, flightTime, tourAverageBudget, estimatedTravelDays, directionsFromJapanDetails, HISOverseasBranchName, HISOverseasBranchSite)
   {
     this.bigAreaJP = bigAreaJP;
     this.bigAreaEN = bigAreaEN;
@@ -51,7 +51,16 @@ export default class whm {
     this.HISOverseasBranchName = HISOverseasBranchName;
     this.HISOverseasBranchSite = HISOverseasBranchSite;
   }
-  
+
+  formatParagraph(text) {
+    let array = text.split(/\r?\n/);
+    let paragraphs = "";
+    array.forEach((paragraph) => {
+      paragraphs += `<p class="description__text">${paragraph}</p>`;
+    });
+    return paragraphs;
+  }
+
   getTemplate()
   {
     return `
@@ -209,7 +218,7 @@ export default class whm {
                 </li>
                 <li class="breadcrumb__item">
                   <a href="/world-heritage/asia/" class="breadcrumb__itemInner">
-                    <span>${this.bigAreaJP}の世界遺産</span> 
+                    <span>${this.bigAreaJP}の世界遺産</span>
                   </a>
                 </li>
                 <li class="breadcrumb__item">
@@ -380,7 +389,7 @@ export default class whm {
                   </ul>
                 </div>
               </section>
-            
+
               <section class="direction">
                 <div class="direction__inner">
                   <h3 class="title">
@@ -664,7 +673,7 @@ export default class whm {
                     </div>
                   </div>
                   <div class="heritage__button heritage__button--recommend"><a href="">グランドキャニオンに行くツアーをもっと見る</a></div>-->
-                  
+
                   <div class="plan-travel">
                     <ul class="plan-travel__list">
                       <li class="plan-travel__item plan-travel__item--tour"><a href="[AL]https://tour.his-j.com/ct/search/02A_10/ASI/IND/">ツアー</a></li>
@@ -827,7 +836,7 @@ export default class whm {
           // 到着地
           const dest = {
             name: '[AK①]ラスベガス',
-            lat: [AK②]36.0840041, 
+            lat: [AK②]36.0840041,
             lng: [AK2③]-115.1559276,
           };
           // 世界遺産
