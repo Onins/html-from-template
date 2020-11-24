@@ -79,7 +79,7 @@ export default {
 
     updateTemplate(data) {
       let country = new WorldHeritage(data.bigAreaJP, data.bigAreaEN, data.countryJP, data.countryEN, data.seoKeyword, data.worldHeritageRegisteredName, data.englishPass, data.imagePass, data.metaDescription, data.metaKeywords, data.name, data.headline, data.explainatoryText, data.staffRecommendedPoints, data.heritageType, data.registrationAndExpansionYear, data.timeDifferenceWithJapan, data.bestSeason, data.flightTime, data.tourAverageBudget, data.estimatedTravelDays, data.directionsFromJapanDetails, data.HISOverseasBranchName, data.HISOverseasBranchSite);
-      data.explainatoryText = country.formatParagraph(data.explainatoryText);
+      country.explainatoryText = country.formatParagraph(data.explainatoryText);
       return country.getTemplate();
     }
   }

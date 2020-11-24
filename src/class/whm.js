@@ -53,7 +53,7 @@ export default class whm {
   }
 
   formatParagraph(text) {
-    let array = text.split(/\r?\n/);
+    let array = text.split("\n\n");
     let paragraphs = "";
     array.forEach((paragraph) => {
       paragraphs += `<p class="description__text">${paragraph}</p>`;
