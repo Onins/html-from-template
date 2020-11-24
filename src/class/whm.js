@@ -1,55 +1,61 @@
 export default class whm {
-  bigAreaJP = "";
-  bigAreaEN = "";
-  countryJP = "";
-  countryEN = "";
-  seoKeyword = "";
-  worldHeritageRegisteredName = "";
-  englishPass = "";
-  imagePass = "";
-  metaDescription = "";
-  metaKeywords = "";
+  big_area_jp = "";
+  big_area_en = "";
+  area_code = "";
+  country_jp = "";
+  country_en = "";
+  country_code_2 = "";
+  country_code_3 = "";
+  city_code = "";
+  seo_keyword = "";
+  registered_name_en = "";
+  en_pass = "";
+  sliders_count = "";
+  meta_description = "";
+  meta_keyword = "";
   name = "";
   headline = "";
-  explainatoryText = "";
-  staffRecommendedPoints = "";
-  heritageType = "";
-  registrationAndExpansionYear = "";
-  timeDifferenceWithJapan = "";
-  bestSeason = "";
-  flightTime = "";
-  tourAverageBudget = "";
-  estimatedTravelDays = "";
-  directionsFromJapanDetails = "";
-  HISOverseasBranchName = "";
-  HISOverseasBranchSite = "";
+  explanatory_text = "";
+  staff_rec_pts = "";
+  heritage_type = "";
+  reg_year = "";
+  time_diff_jp = "";
+  best_season = "";
+  flight_time = "";
+  tour_avg_budget = "";
+  est_travel_days = "";
+  direction_jp_details = "";
+  his_overseas_branch = "";
 
-  constructor(bigAreaJP, bigAreaEN, countryJP, countryEN, seoKeyword, worldHeritageRegisteredName, englishPass, imagePass, metaDescription, metaKeywords, name, headline, explainatoryText, staffRecommendedPoints, heritageType, registrationAndExpansionYear, timeDifferenceWithJapan, bestSeason, flightTime, tourAverageBudget, estimatedTravelDays, directionsFromJapanDetails, HISOverseasBranchName, HISOverseasBranchSite)
+  constructor(big_area_jp, big_area_en, area_code, country_jp, country_en, country_code_2, country_code_3, city_code, seo_keyword, registered_name_en, en_pass, sliders_count, meta_description, meta_keyword, name, headline, explanatory_text, staff_rec_pts, heritage_type, reg_year, time_diff_jp, best_season, flight_time, tour_avg_budget, est_travel_days, direction_jp_details, his_overseas_branch)
   {
-    this.bigAreaJP = bigAreaJP;
-    this.bigAreaEN = bigAreaEN;
-    this.countryJP = countryJP;
-    this.countryEN = countryEN;
-    this.seoKeyword = seoKeyword;
-    this.worldHeritageRegisteredName = worldHeritageRegisteredName;
-    this.englishPass = englishPass;
-    this.imagePass = imagePass;
-    this.metaDescription = metaDescription;
-    this.metaKeywords = metaKeywords;
+    this.big_area_jp = big_area_jp;
+    this.big_area_en = big_area_en;
+    this.area_code = area_code;
+    this.country_jp = country_jp;
+    this.country_en = country_en;
+    this.country_code_2 = country_code_2;
+    this.country_code_3 = country_code_3;
+    this.city_code = city_code;
+    this.seo_keyword = seo_keyword;
+    this.registered_name_en = registered_name_en;
+    this.en_pass = en_pass;
+    this.sliders_count = sliders_count;
+    this.meta_description = meta_description;
+    this.meta_keyword = meta_keyword;
     this.name = name;
     this.headline = headline;
-    this.explainatoryText = explainatoryText;
-    this.staffRecommendedPoints = staffRecommendedPoints;
-    this.heritageType = heritageType;
-    this.registrationAndExpansionYear = registrationAndExpansionYear;
-    this.timeDifferenceWithJapan = timeDifferenceWithJapan;
-    this.bestSeason = bestSeason;
-    this.flightTime = flightTime;
-    this.tourAverageBudget = tourAverageBudget;
-    this.estimatedTravelDays = estimatedTravelDays;
-    this.directionsFromJapanDetails = directionsFromJapanDetails;
-    this.HISOverseasBranchName = HISOverseasBranchName;
-    this.HISOverseasBranchSite = HISOverseasBranchSite;
+    this.explanatory_text = explanatory_text;
+    this.staff_rec_pts = staff_rec_pts;
+    this.heritage_type = heritage_type;
+    this.reg_year = reg_year;
+    this.time_diff_jp = time_diff_jp;
+    this.best_season = best_season;
+    this.flight_time = flight_time;
+    this.tour_avg_budget = tour_avg_budget;
+    this.est_travel_days = est_travel_days;
+    this.direction_jp_details = direction_jp_details;
+    this.his_overseas_branch = his_overseas_branch;
   }
 
   formatParagraph(text) {
@@ -61,6 +67,17 @@ export default class whm {
     return paragraphs;
   }
 
+  overseasBranch(detail) {
+    let branch = detail.split("\n");
+    let detailText;
+    if (detail !== "-" && detail !== "") {
+      detailText = `<p class="direction-detail__text">この世界遺産がある国には、HISの現地支店がございます。<a href="${branch[0]}">>>${branch[1]}</a><br />お客様の安心で快適な旅をサポートします。</p>`;
+    } else {
+      detailText = "";
+    }
+    return detailText;
+  }
+
   getTemplate()
   {
     return `
@@ -68,7 +85,7 @@ export default class whm {
     <html lang="ja">
       <head>
         <meta charset="utf-8" />
-        <title>${this.name} - ${this.countryJP} 世界遺産の旅【HIS】</title>
+        <title>${this.name} - ${this.country_jp} 世界遺産の旅【HIS】</title>
         <!-- Google Tag Manager -->
         <script>
           (function (w, d, s, l, i) {
@@ -83,25 +100,25 @@ export default class whm {
           })(window, document, 'script', 'dataLayer', 'GTM-M6QKN2');
         </script>
         <!-- End Google Tag Manager -->
-        <meta name="keywords" content="${this.metaKeywords}" />
-        <meta name="description" content="${this.metaDescription}" />
+        <meta name="keywords" content="${this.meta_keyword}" />
+        <meta name="description" content="${this.meta_description}" />
         <meta name="viewport" content="width=1024" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@HIS_japan" />
-        <link rel="canonical" href="https://www.his-j.com/world-heritage/${this.bigAreaEN}/${this.countryEN}/${this.englishPass}/" />
-        <link rel="alternate" media="only screen and (max-width: 480px)" href="https://www.his-j.com/world-heritage/asia/india/taj-mahal_sp.html" />
+        <link rel="canonical" href="https://www.his-j.com/world-heritage/${this.big_area_en}/${this.country_en}/${this.en_pass}/" />
+        <link rel="alternate" media="only screen and (max-width: 480px)" href="https://www.his-j.com/world-heritage/${this.big_area_en}/${this.country_en}/${this.en_pass}/index_sp.html" />
         <link rel="shortcut icon" href="https://www.his-j.com/cmn/images/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon" href="https://www.his-j.com/cmn/images/apple-touch-icon.png" sizes="180x180" />
 
         <!--OpenGraph-->
         <meta property="og:locale" content="ja_JP" />
-        <meta property="og:title" content="${this.name} - ${this.countryJP} 世界遺産の旅【HIS】" />
+        <meta property="og:title" content="${this.name} - ${this.country_jp} 世界遺産の旅【HIS】" />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content="https://www.his-j.com/world-heritage/${this.bigAreaEN}/${this.countryEN}/${this.englishPass}/" />
+        <meta property="og:url" content="https://www.his-j.com/world-heritage/${this.big_area_en}/${this.country_en}/${this.en_pass}/" />
         <meta property="og:site_name" content="HIS海外・国内総合旅行予約サイト" />
         <meta property="og:image" content="https://www.his-j.comhttps://www.his-j.com/cmn/images/ogp.png" />
-        <meta property="og:description" content="${this.metaDescription}" />
+        <meta property="og:description" content="${this.meta_description}" />
         <meta property="fb:app_id" content="222347251136850" />
 
         <!--構造化データ-->
@@ -130,23 +147,23 @@ export default class whm {
                 "@type": "ListItem",
                 "position": 3,
                 "item": {
-                  "@id": "https://www.his-j.com/world-heritage/${this.bigAreaEN}/",
-                  "name": "${this.bigAreaJP}の世界遺産"
+                  "@id": "https://www.his-j.com/world-heritage/${this.big_area_en}/",
+                  "name": "${this.big_area_jp}の世界遺産"
                 }
               },
               {
                 "@type": "ListItem",
                 "position": 4,
                 "item": {
-                  "@id": "https://www.his-j.com/world-heritage/${this.bigAreaEN}/${this.countryEN}/",
-                  "name": "${this.countryJP}の世界遺産"
+                  "@id": "https://www.his-j.com/world-heritage/${this.big_area_en}/${this.country_en}/",
+                  "name": "${this.country_jp}の世界遺産"
                 }
               },
               {
                 "@type": "ListItem",
                 "position": 5,
                 "item": {
-                  "@id": "https://www.his-j.com/world-heritage/${this.bigAreaEN}/${this.countryEN}/${this.englishPass}/",
+                  "@id": "https://www.his-j.com/world-heritage/${this.big_area_en}/${this.country_en}/${this.en_pass}/",
                   "name": "${this.name}"
                 }
               }
@@ -157,7 +174,7 @@ export default class whm {
         <!--SPでアクセス時にSPページへリダイレクト-->
         <script type="text/javascript">
           if ((navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
-            var newPage = 'https://www.his-j.com/world-heritage/${this.bigAreaEN}/${this.countryEN}/${this.englishPass}/index_sp.html';
+            var newPage = 'https://www.his-j.com/world-heritage/${this.big_area_en}/${this.country_en}/${this.en_pass}/index_sp.html';
             var redirectURL = location.origin + newPage + location.search;
             redirectURL += location.hash;
             location.href = redirectURL;
@@ -195,7 +212,7 @@ export default class whm {
         <!-- End Google Tag Manager (noscript) -->
 
         <div id="hisApp">
-          <h1 id="site-copy">${this.name} - ${this.countryJP} 世界遺産の旅【HIS】</h1>
+          <h1 id="site-copy">${this.name} - ${this.country_jp} 世界遺産の旅【HIS】</h1>
 
           <div id="header">
             <his-header></his-header>
@@ -217,18 +234,18 @@ export default class whm {
                   </a>
                 </li>
                 <li class="breadcrumb__item">
-                  <a href="/world-heritage/asia/" class="breadcrumb__itemInner">
-                    <span>${this.bigAreaJP}の世界遺産</span>
+                  <a href="/world-heritage/${this.big_area_en}/" class="breadcrumb__itemInner">
+                    <span>${this.big_area_jp}の世界遺産</span> 
                   </a>
                 </li>
                 <li class="breadcrumb__item">
-                  <a href="/world-heritage/asia/india/" class="breadcrumb__itemInner">
-                    <span>${this.countryJP}の世界遺産</span>
+                  <a href="/world-heritage/${this.big_area_en}/${this.country_en}/" class="breadcrumb__itemInner">
+                    <span>${this.country_jp}の世界遺産</span>
                   </a>
                 </li>
                 <li class="breadcrumb__item">
                   <span class="breadcrumb__itemInner">
-                    <span>${this.seoKeyword}</span>
+                    <span>${this.seo_keyword}</span>
                   </span>
                 </li>
               </ul>
@@ -243,7 +260,7 @@ export default class whm {
               <section class="main-visual">
                 <h2 class="main-visual__text">
                   <p class="main-visual__text--japanese">${this.name}</p>
-                  <p class="main-visual__text--english">${this.worldHeritageRegisteredName}</p>
+                  <p class="main-visual__text--english">${this.registered_name_en}</p>
                 </h2>
               </section>
 
@@ -256,40 +273,40 @@ export default class whm {
 
                   <ul class="slick">
                     <li>
-                      <img class="object-fit" src="/world-heritage/${this.bigAreaEN}/${this.countryEN}/img/${this.englishPass}_main01.jpg" alt="${this.name}" />
+                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main01.jpg" alt="${this.name}" />
                     </li>
                     <li>
-                      <img class="object-fit" src="/world-heritage/${this.bigAreaEN}/${this.countryEN}/img/${this.englishPass}_main02.jpg" alt="${this.name}" />
+                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main02.jpg" alt="${this.name}" />
                     </li>
                     <li>
-                      <img class="object-fit" src="/world-heritage/${this.bigAreaEN}/${this.countryEN}/img/${this.englishPass}_main03.jpg" alt="${this.name}" />
+                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main03.jpg" alt="${this.name}" />
                     </li>
                     <li>
-                      <img class="object-fit" src="/world-heritage/${this.bigAreaEN}/${this.countryEN}/img/${this.englishPass}_main04.jpg" alt="${this.name}" />
+                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main04.jpg" alt="${this.name}" />
                     </li>
                   </ul>
                   <ul class="thumbnail">
                     <li>
-                      <img class="object-fit" src="/world-heritage/${this.bigAreaEN}/${this.countryEN}/img/${this.englishPass}_main01.jpg" alt="${this.name}" />
+                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main01.jpg" alt="${this.name}" />
                     </li>
                     <li>
-                      <img class="object-fit" src="/world-heritage/${this.bigAreaEN}/${this.countryEN}/img/${this.englishPass}_main02.jpg" alt="${this.name}" />
+                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main02.jpg" alt="${this.name}" />
                     </li>
                     <li>
-                      <img class="object-fit" src="/world-heritage/${this.bigAreaEN}/${this.countryEN}/img/${this.englishPass}_main03.jpg" alt="${this.name}" />
+                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main03.jpg" alt="${this.name}" />
                     </li>
                     <li>
-                      <img class="object-fit" src="/world-heritage/${this.bigAreaEN}/${this.countryEN}/img/${this.englishPass}_main04.jpg" alt="${this.name}" />
+                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main04.jpg" alt="${this.name}" />
                     </li>
                   </ul>
 
-                  <p class="description__text">${this.explainatoryText}</p>
+                  <p class="description__text">${this.explanatory_text}</p>
 
                   <div class="topics">
                     <div class="topics__inner">
                       <p class="topics__sub-title">HIS秘境旅行専門デスクネイチャーワールド・スタッフの</p>
                       <p class="topics__title">おすすめトピックス</p>
-                      <p class="topics__sentence">${this.staffRecommendedPoints}<!--<span></span>--></p>
+                      <p class="topics__sentence">${this.staff_rec_pts}<!--<span></span>--></p>
                     </div>
                   </div>
                 </div>
@@ -310,7 +327,7 @@ export default class whm {
                         </p>
                       </div>
                       <p class="information__item-title">登録名</p>
-                      <p class="information__item-data">${this.name}<br />${this.worldHeritageRegisteredName}</p>
+                      <p class="information__item-data">${this.name}<br />${this.registered_name_en}</p>
                     </li>
                     <li class="information__item-double">
                       <div class="information__item-inner">
@@ -320,7 +337,7 @@ export default class whm {
                           </p>
                         </div>
                         <p class="information__item-title">ベストシーズン</p>
-                        <p class="information__item-data">${this.bestSeason}</p>
+                        <p class="information__item-data">${this.best_season}</p>
                       </div>
                       <div class="information__item-inner">
                         <div class="information__item-img-outer">
@@ -329,7 +346,7 @@ export default class whm {
                           </p>
                         </div>
                         <p class="information__item-title">日本との時差</p>
-                        <p class="information__item-data">${this.timeDifferenceWithJapan}</p>
+                        <p class="information__item-data">${this.time_diff_jp}</p>
                       </div>
                     </li>
                     <li class="information__item">
@@ -339,7 +356,7 @@ export default class whm {
                         </p>
                       </div>
                       <p class="information__item-title">国名</p>
-                      <p class="information__item-data">${this.countryJP}</p>
+                      <p class="information__item-data">${this.country_jp}</p>
                     </li>
                     <li class="information__item">
                       <div class="information__item-img-outer">
@@ -348,7 +365,7 @@ export default class whm {
                         </p>
                       </div>
                       <p class="information__item-title">飛行時間</p>
-                      <p class="information__item-data">${this.flightTime}</p>
+                      <p class="information__item-data">${this.flight_time}</p>
                     </li>
                     <li class="information__item">
                       <div class="information__item-img-outer">
@@ -357,7 +374,7 @@ export default class whm {
                         </p>
                       </div>
                       <p class="information__item-title">登録年</p>
-                      <p class="information__item-data">${this.registrationAndExpansionYear}</p>
+                      <p class="information__item-data">${this.reg_year}</p>
                     </li>
                     <li class="information__item">
                       <div class="information__item-img-outer">
@@ -366,7 +383,7 @@ export default class whm {
                         </p>
                       </div>
                       <p class="information__item-title">平均予算</p>
-                      <p class="information__item-data">${this.tourAverageBudget}</p>
+                      <p class="information__item-data">${this.tour_avg_budget}</p>
                     </li>
                     <li class="information__item">
                       <div class="information__item-img-outer">
@@ -375,7 +392,7 @@ export default class whm {
                         </p>
                       </div>
                       <p class="information__item-title">世界遺産分類</p>
-                      <p class="information__item-data">${this.heritageType}</p>
+                      <p class="information__item-data">${this.heritage_type}</p>
                     </li>
                     <li class="information__item">
                       <div class="information__item-img-outer">
@@ -384,12 +401,12 @@ export default class whm {
                         </p>
                       </div>
                       <p class="information__item-title">旅行日数</p>
-                      <p class="information__item-data">${this.estimatedTravelDays}</p>
+                      <p class="information__item-data">${this.est_travel_days}</p>
                     </li>
                   </ul>
                 </div>
               </section>
-
+            
               <section class="direction">
                 <div class="direction__inner">
                   <h3 class="title">
@@ -423,8 +440,8 @@ export default class whm {
                     </div>
                     <div class="direction-detail__inner">
                       <div class="direction-detail__sentence">
-                        <p class="direction-detail__text">${this.directionsFromJapanDetails}</p>
-                        <p class="direction-detail__text">この世界遺産がある国には、HISの現地支店がございます。<a href="${this.HISOverseasBranchSite}">>>${this.HISOverseasBranchName}アグラツアーデスク支店</a><br />お客様の安心で快適な旅をサポートします。</p>
+                        <p class="direction-detail__text">${this.direction_jp_details}</p>
+                        ${this.his_overseas_branch}
                       </div>
                     </div>
                   </div>
@@ -434,7 +451,7 @@ export default class whm {
               <section class="recommend">
                 <div class="recommend__inner">
                   <h3 class="title">
-                    <p class="title__text title__text--long">${this.seoKeyword}に行く旅行を探す</p>
+                    <p class="title__text title__text--long">${this.seo_keyword}に行く旅行を探す</p>
                     <img src="/world-heritage/img/english_title/planatrip.svg" alt="Plan a Trip" />
                   </h3>
 
@@ -673,15 +690,15 @@ export default class whm {
                     </div>
                   </div>
                   <div class="heritage__button heritage__button--recommend"><a href="">グランドキャニオンに行くツアーをもっと見る</a></div>-->
-
+                  
                   <div class="plan-travel">
                     <ul class="plan-travel__list">
-                      <li class="plan-travel__item plan-travel__item--tour"><a href="[AL]https://tour.his-j.com/ct/search/02A_10/ASI/IND/">ツアー</a></li>
+                      <li class="plan-travel__item plan-travel__item--tour"><a href="https://tour.his-j.com/ct/search/02A_10/${this.area_code}/${this.country_code_3}/">ツアー</a></li>
                       <li class="plan-travel__item plan-travel__item--ticket-hotel"><a href="https://www.his-j.com/kaigai/air-hotel/Default.aspx">航空券＋ホテル</a></li>
-                      <li class="plan-travel__item plan-travel__item--ticket"><a href="[AP]https://air.his-j.com/IN/">航空券</a></li>
-                      <li class="plan-travel__item plan-travel__item--hotel"><a href="[AR]https://hotels.his-j.com/HotelList/AGR/">ホテル</a></li>
-                      <li class="plan-travel__item plan-travel__item--optional-tour"><a href="[AT]https://activities.his-j.com/NationTop/IND/">オプショナルツアー</a></li>
-                      <li class="plan-travel__item plan-travel__item--rent-a-car"><a href="[AU]https://cars.his-j.com/RtfCarList.aspx?PickupCityCd=AGR">レンタカー</a></li>
+                      <li class="plan-travel__item plan-travel__item--ticket"><a href="https://air.his-j.com/${this.country_code_2}/">航空券</a></li>
+                      <li class="plan-travel__item plan-travel__item--hotel"><a href="https://hotels.his-j.com/HotelList/${this.city_code}/">ホテル</a></li>
+                      <li class="plan-travel__item plan-travel__item--optional-tour"><a href="https://activities.his-j.com/NationTop/${this.country_code_3}/">オプショナルツアー</a></li>
+                      <li class="plan-travel__item plan-travel__item--rent-a-car"><a href="https://cars.his-j.com/RtfCarList.aspx?PickupCityCd=${this.city_code}">レンタカー</a></li>
                     </ul>
                   </div>
 
@@ -823,7 +840,7 @@ export default class whm {
         <!--ページ設定用-->
         <script>
           /* ▼メインビジュアル反映▼ */
-          const mv = '/world-heritage/${this.bigAreaEN}/${this.countryEN}/img/${this.englishPass}_mv.jpg';
+          const mv = '/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_mv.jpg';
           /* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
 
           /* ▼google map反映▼ */
@@ -836,7 +853,7 @@ export default class whm {
           // 到着地
           const dest = {
             name: '[AK①]ラスベガス',
-            lat: [AK②]36.0840041,
+            lat: [AK②]36.0840041, 
             lng: [AK2③]-115.1559276,
           };
           // 世界遺産
@@ -844,7 +861,7 @@ export default class whm {
             name: '[AK④]グランドキャニオン',
             lat: [AK⑤]36.1127805,
             lng: [AK⑥]-114.0048244,
-            src: '/world-heritage/asia/india/img/taj-mahal-thumb.jpg', //画像
+            src: '/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_mv.jpg', //画像
             // english: 'Grand Canyon', //※空白かコメントアウトで表示消せます
           };
           /* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
@@ -885,7 +902,6 @@ export default class whm {
         <!-- End Yahoo Tag Manager -->
       </body>
     </html>
-
     `;
   }
 }
