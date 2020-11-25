@@ -79,35 +79,37 @@ export default {
 
     updateTemplate(data) {
       let country = new WorldHeritage(
-        data.big_area_jp, 
-        data.big_area_en, 
-        data.area_code, 
-        data.country_jp, 
-        data.country_en, 
-        data.country_code_2, 
-        data.country_code_3, 
-        data.city_code, 
-        data.seo_keyword, 
-        data.registered_name_en, 
-        data.en_pass, 
-        data.sliders_count, 
-        data.meta_description, 
-        data.meta_keyword, 
-        data.name, 
-        data.headline, 
-        data.explanatory_text, 
-        data.staff_rec_pts, 
-        data.heritage_type, 
-        data.reg_year, 
-        data.time_diff_jp, 
-        data.best_season, 
-        data.flight_time, 
-        data.tour_avg_budget, 
-        data.est_travel_days, 
-        data.direction_jp_details, 
+        data.big_area_jp,
+        data.big_area_en,
+        data.area_code,
+        data.country_jp,
+        data.country_en,
+        data.country_code_2,
+        data.country_code_3,
+        data.city_code,
+        data.seo_keyword,
+        data.registered_name_en,
+        data.en_pass,
+        data.sliders_count,
+        data.meta_description,
+        data.meta_keyword,
+        data.name,
+        data.headline,
+        data.explanatory_text,
+        data.staff_rec_pts,
+        data.heritage_type,
+        data.reg_year,
+        data.time_diff_jp,
+        data.best_season,
+        data.flight_time,
+        data.tour_avg_budget,
+        data.est_travel_days,
+        data.direction_jp_details,
         data.his_overseas_branch
       );
       country.explanatory_text = country.formatParagraph(data.explanatory_text);
+      country.staff_rec_pts = country.formatParagraph(data.staff_rec_pts);
+      console.log(country.staff_rec_pts)
       country.his_overseas_branch = country.overseasBranch(data.his_overseas_branch);
       return country.getTemplate();
     }
