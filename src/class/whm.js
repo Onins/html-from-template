@@ -59,12 +59,14 @@ export default class whm {
   }
 
   formatParagraph(text) {
-    let array = text.split("\n\n");
+    let array = text !== "" ? text.split("\n\n") : false;
     let paragraphs = "";
-    array.forEach((paragraph) => {
-      paragraphs += `<p class="description__text">${paragraph}</p>`;
-    });
-    return paragraphs;
+    if (array) {
+      array.forEach((paragraph) => {
+        paragraphs += `<p class="description__text">${paragraph}</p>`;
+      });
+      return paragraphs;
+    }
   }
 
   overseasBranch(detail) {
@@ -235,7 +237,7 @@ export default class whm {
                 </li>
                 <li class="breadcrumb__item">
                   <a href="/world-heritage/${this.big_area_en}/" class="breadcrumb__itemInner">
-                    <span>${this.big_area_jp}の世界遺産</span> 
+                    <span>${this.big_area_jp}の世界遺産</span>
                   </a>
                 </li>
                 <li class="breadcrumb__item">
@@ -406,7 +408,7 @@ export default class whm {
                   </ul>
                 </div>
               </section>
-            
+
               <section class="direction">
                 <div class="direction__inner">
                   <h3 class="title">
@@ -690,7 +692,7 @@ export default class whm {
                     </div>
                   </div>
                   <div class="heritage__button heritage__button--recommend"><a href="">グランドキャニオンに行くツアーをもっと見る</a></div>-->
-                  
+
                   <div class="plan-travel">
                     <ul class="plan-travel__list">
                       <li class="plan-travel__item plan-travel__item--tour"><a href="https://tour.his-j.com/ct/search/02A_10/${this.area_code}/${this.country_code_3}/">ツアー</a></li>
@@ -853,7 +855,7 @@ export default class whm {
           // 到着地
           const dest = {
             name: '[AK①]ラスベガス',
-            lat: [AK②]36.0840041, 
+            lat: [AK②]36.0840041,
             lng: [AK2③]-115.1559276,
           };
           // 世界遺産
