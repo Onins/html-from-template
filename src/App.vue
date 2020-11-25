@@ -109,7 +109,6 @@ export default {
       );
       country.explanatory_text = country.formatParagraph(data.explanatory_text);
       country.staff_rec_pts = country.formatParagraph(data.staff_rec_pts);
-      console.log(country.staff_rec_pts)
       country.his_overseas_branch = country.overseasBranch(data.his_overseas_branch);
       return country.getTemplate();
     }
