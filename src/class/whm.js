@@ -147,7 +147,7 @@ export default class whm {
   overseasBranch(detail) {
     let branch = detail.split("\n");
     let detailText;
-    if (detail !== "-" && detail !== "") {
+    if (detail !== "-" && detail !== "" && detail !== "- no need") {
       detailText = `<p class="direction-detail__text">この世界遺産がある国には、HISの現地支店がございます。<a href="${branch[0]}">>>${branch[1]}</a><br />お客様の安心で快適な旅をサポートします。</p>`;
     } else {
       detailText = "";
@@ -498,20 +498,20 @@ export default class whm {
                       <ul class="direction-detail__list">
                         <li class="direction-detail__item">
                           <p class="direction-detail__place">日本</p>
-                          <p class="direction-detail__time direction-detail__time--plane">[AD①]{約11時間}</p>
+                          <p class="direction-detail__time direction-detail__time--plane">[AH①]{約11時間}</p>
                         </li>
                         <li class="direction-detail__item">
                           <div class="direction-detail__item-inner">
-                            <p class="direction-detail__place">[AD②]{インド デリー}</p>
+                            <p class="direction-detail__place">[AH②]{インド デリー}</p>
                             <!-- <p class="direction-detail__place">ラスベガス</p> -->
                           </div>
                           <div class="direction-detail__item-inner">
-                            <p class="direction-detail__time direction-detail__time--plane">[AD③]{約40分}</p>
-                            <p class="direction-detail__time direction-detail__time--bus">[AD④]{約2時間}</p>
+                            <p class="direction-detail__time direction-detail__time--plane">[AH③]{約40分}</p>
+                            <p class="direction-detail__time direction-detail__time--bus">[AH④]{約2時間}</p>
                           </div>
                         </li>
                         <li class="direction-detail__item">
-                          <p class="direction-detail__place">[AD⑤]{タージ・マハル}</p>
+                          <p class="direction-detail__place">[AH⑤]{タージ・マハル}</p>
                         </li>
                       </ul>
                     </div>
@@ -781,7 +781,7 @@ export default class whm {
 
                   <div class="other">
                     <div class="other__block">
-                      <h5 class="other__title">その他の[E]"アメリカ"旅行</h5>
+                      <h5 class="other__title">その他の${this.country_jp}旅行</h5>
                       <ul class="other__list"> "inside of its <li></li> can be [AW]"
                         <li class="other__item"><a href="https://www.his-j.com/dst/america.htm">アメリカ旅行</a></li>
                         <li class="other__item"><a href="https://www.his-j.com/dst/lasvegas.htm">ラスベガス旅行</a></li>
@@ -851,7 +851,7 @@ export default class whm {
               <section class="other-country">
                 <div class="other-country__inner">
                   <h3 class="title">
-                    <p class="title__text title__text--long">その他の[B]"北米"の国の世界遺産を探す</p>
+                    <p class="title__text title__text--long">その他の${this.big_area_jp}の国の世界遺産を探す</p>
                     <img src="/world-heritage/img/english_title/othercountries.svg" alt="Other Countries" />
                   </h3>
                   <ul class="other-country__list"> "insede of its <li></li> can be [AY]"
