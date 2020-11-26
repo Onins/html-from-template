@@ -105,11 +105,13 @@ export default {
         data.tour_avg_budget,
         data.est_travel_days,
         data.direction_jp_details,
-        data.his_overseas_branch
+        data.his_overseas_branch,
+        data.long_lat_fjp_tsite,
+        data.coordinates
       );
       country.explanatory_text = country.formatParagraph(data.explanatory_text);
       country.staff_rec_pts = country.formatParagraph(data.staff_rec_pts);
-      console.log(country.staff_rec_pts)
+      country.coordinates = country.formatCoordinates(country.long_lat_fjp_tsite);
       country.his_overseas_branch = country.overseasBranch(data.his_overseas_branch);
       return country.getTemplate();
     }
