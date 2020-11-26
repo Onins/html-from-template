@@ -11,6 +11,7 @@ export default class whm {
   registered_name_en = "";
   en_pass = "";
   sliders_count = "";
+  slider="";
   meta_description = "";
   meta_keyword = "";
   name = "";
@@ -66,6 +67,17 @@ export default class whm {
         paragraphs += `<p class="description__text">${paragraph}</p>`;
       });
       return paragraphs;
+    }
+  }
+
+  generateSlider(num) {
+    if(num !== "") {
+      let i;
+      let slideItem = "";
+      for(i = 1; i <= num; i++) {
+        slideItem += `<li><img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main0${i}.jpg" alt="${this.name}" /></li>\n`
+      }
+      return slideItem;
     }
   }
 
@@ -266,40 +278,18 @@ export default class whm {
                 </h2>
               </section>
 
-              <section class="description">
+              <section id="slider-container" class="description">
                 <div class="description__inner">
                   <h3 class="title">
                     <p class="title__text title__text--short">${this.headline}</p>
                     <img src="/world-heritage/img/english_title/description.svg" alt="Description" />
                   </h3>
-
+                  
                   <ul class="slick">
-                    <li>
-                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main01.jpg" alt="${this.name}" />
-                    </li>
-                    <li>
-                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main02.jpg" alt="${this.name}" />
-                    </li>
-                    <li>
-                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main03.jpg" alt="${this.name}" />
-                    </li>
-                    <li>
-                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main04.jpg" alt="${this.name}" />
-                    </li>
+                    ${this.sliders_count}
                   </ul>
                   <ul class="thumbnail">
-                    <li>
-                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main01.jpg" alt="${this.name}" />
-                    </li>
-                    <li>
-                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main02.jpg" alt="${this.name}" />
-                    </li>
-                    <li>
-                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main03.jpg" alt="${this.name}" />
-                    </li>
-                    <li>
-                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main04.jpg" alt="${this.name}" />
-                    </li>
+                    ${this.sliders_count}
                   </ul>
 
                   <p class="description__text">${this.explanatory_text}</p>
