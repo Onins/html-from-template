@@ -11,6 +11,7 @@ export default class whm {
   registered_name_en = "";
   en_pass = "";
   sliders_count = "";
+  slider="";
   meta_description = "";
   meta_keyword = "";
   name = "";
@@ -28,8 +29,10 @@ export default class whm {
   his_overseas_branch = "";
   other_countries_travel_pc = "";
   other_wh_pc = "";
+  long_lat_fjp_tsite = "";
+  coordinates = "";
 
-  constructor(big_area_jp, big_area_en, area_code, country_jp, country_en, country_code_2, country_code_3, city_code, seo_keyword, registered_name_en, en_pass, sliders_count, meta_description, meta_keyword, name, headline, explanatory_text, staff_rec_pts, heritage_type, reg_year, time_diff_jp, best_season, flight_time, tour_avg_budget, est_travel_days, direction_jp_details, his_overseas_branch, other_countries_travel_pc, other_wh_pc)
+  constructor(big_area_jp, big_area_en, area_code, country_jp, country_en, country_code_2, country_code_3, city_code, seo_keyword, registered_name_en, en_pass, sliders_count, meta_description, meta_keyword, name, headline, explanatory_text, staff_rec_pts, heritage_type, reg_year, time_diff_jp, best_season, flight_time, tour_avg_budget, est_travel_days, direction_jp_details, his_overseas_branch, other_countries_travel_pc, other_wh_pc, long_lat_fjp_tsite, coordinates)
   {
     this.big_area_jp = big_area_jp;
     this.big_area_en = big_area_en;
@@ -60,6 +63,79 @@ export default class whm {
     this.his_overseas_branch = his_overseas_branch;
     this.other_countries_travel_pc = other_countries_travel_pc;
     this.other_wh_pc = other_wh_pc;
+    this.long_lat_fjp_tsite = long_lat_fjp_tsite;
+    this.coordinates = coordinates;
+  }
+
+  formatCoordinates(coordinates) {
+    let array = coordinates !== "" ? coordinates.split("\n") : "";
+    let res;
+    let dest = [];
+    let dest2 = [];
+    let heritage = [];
+    let longLat;
+
+    if (array) {
+      res = array.filter(n => n);
+      res.forEach((el, index) => {
+        index = index+1;
+
+        //DEST
+        if (index <= 2) {
+          if (index !== 2) {
+            dest.push(el);
+          }else {
+            longLat = el.split(",");
+            longLat.forEach((el) => {
+              let filterTxt = el.split('').shift();
+              if (filterTxt === "@") {
+                dest.push(el.substring(1));
+              }else {
+                dest.push(el);
+              }
+            });
+          }
+        }
+
+        //DEST2
+        if (index > 2 && index <= 4) {
+          if (index !== 4) {
+            dest2.push(el);
+          }else {
+            longLat = el.split(",");
+            longLat.forEach((el) => {
+              let filterTxt = el.split('').shift();
+              if (filterTxt === "@") {
+                dest2.push(el.substring(1));
+              }else {
+                dest2.push(el);
+              }
+            });
+          }
+        }
+
+        //HERITAGE
+        if (index > 4 && index <= 6) {
+          if (index !== 6) {
+            heritage.push(el);
+          }else {
+            longLat = el.split(",");
+            longLat.forEach((el) => {
+              let filterTxt = el.split('').shift();
+              if (filterTxt === "@") {
+                heritage.push(el.substring(1));
+              }else {
+                heritage.push(el);
+              }
+            });
+          }
+        }
+
+      });
+
+      return {dest, dest2, heritage}
+    }
+
   }
 
   formatParagraph(text) {
@@ -70,6 +146,17 @@ export default class whm {
         paragraphs += `<p class="description__text">${paragraph}</p>`;
       });
       return paragraphs;
+    }
+  }
+
+  generateSlider(num) {
+    if(num !== "") {
+      let i;
+      let slideItem = "";
+      for(i = 1; i <= num; i++) {
+        slideItem += `<li><img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main0${i}.jpg" alt="${this.name}" /></li>\n`
+      }
+      return slideItem;
     }
   }
 
@@ -294,40 +381,18 @@ export default class whm {
                 </h2>
               </section>
 
-              <section class="description">
+              <section id="slider-container" class="description">
                 <div class="description__inner">
                   <h3 class="title">
                     <p class="title__text title__text--short">${this.headline}</p>
                     <img src="/world-heritage/img/english_title/description.svg" alt="Description" />
                   </h3>
-
+                  
                   <ul class="slick">
-                    <li>
-                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main01.jpg" alt="${this.name}" />
-                    </li>
-                    <li>
-                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main02.jpg" alt="${this.name}" />
-                    </li>
-                    <li>
-                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main03.jpg" alt="${this.name}" />
-                    </li>
-                    <li>
-                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main04.jpg" alt="${this.name}" />
-                    </li>
+                    ${this.sliders_count}
                   </ul>
                   <ul class="thumbnail">
-                    <li>
-                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main01.jpg" alt="${this.name}" />
-                    </li>
-                    <li>
-                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main02.jpg" alt="${this.name}" />
-                    </li>
-                    <li>
-                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main03.jpg" alt="${this.name}" />
-                    </li>
-                    <li>
-                      <img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main04.jpg" alt="${this.name}" />
-                    </li>
+                    ${this.sliders_count}
                   </ul>
 
                   <p class="description__text">${this.explanatory_text}</p>
@@ -872,15 +937,23 @@ export default class whm {
           };
           // 到着地
           const dest = {
-            name: '[AK①]ラスベガス',
-            lat: [AK②]36.0840041,
-            lng: [AK2③]-115.1559276,
+            name: ${this.coordinates ? this.coordinates.dest[0] : ""},
+            lat: ${this.coordinates ? this.coordinates.dest[1] : ""},
+            lng: ${this.coordinates ? this.coordinates.dest[2] : ""},
           };
+
+
+          const dest2 = {
+            name: ${this.coordinates ? this.coordinates.dest2[0] : ""},
+            lat: ${this.coordinates ? this.coordinates.dest2[1] : ""},
+            lng: ${this.coordinates ? this.coordinates.dest2[2] : ""},
+          };
+
           // 世界遺産
           const heritage = {
-            name: '[AK④]グランドキャニオン',
-            lat: [AK⑤]36.1127805,
-            lng: [AK⑥]-114.0048244,
+            name: ${this.coordinates ? this.coordinates.heritage[0] : ""},
+            lat: ${this.coordinates ? this.coordinates.heritage[1] : ""},
+            lng: ${this.coordinates ? this.coordinates.heritage[2] : ""},
             src: '/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_mv.jpg', //画像
             // english: 'Grand Canyon', //※空白かコメントアウトで表示消せます
           };

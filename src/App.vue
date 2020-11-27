@@ -107,13 +107,17 @@ export default {
         data.direction_jp_details,
         data.his_overseas_branch,
         data.other_countries_travel_pc,
-        data.other_wh_pc
+        data.other_wh_pc,
+        data.long_lat_fjp_tsite,
+        data.coordinates
       );
       country.explanatory_text = country.formatParagraph(data.explanatory_text);
       country.staff_rec_pts = country.formatParagraph(data.staff_rec_pts);
+      country.coordinates = country.formatCoordinates(country.long_lat_fjp_tsite);
       country.his_overseas_branch = country.overseasBranch(data.his_overseas_branch);
       country.other_countries_travel_pc = country.otherCountriesTravel(data.other_countries_travel_pc);
       country.other_wh_pc = country.otherWH(data.other_wh_pc);
+      country.sliders_count = country.generateSlider(data.sliders_count);
       return country.getTemplate();
     }
   }
@@ -142,4 +146,4 @@ a {
   box-shadow: 1px 1px 1px #bdb7b7;
   font-family: sans-serif;
 }
-</style>>
+</style>
