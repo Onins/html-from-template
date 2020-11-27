@@ -176,7 +176,7 @@ export default class whm {
     if (list !== "-" && list !== "" && list !== "- no need") {
       array.forEach(function(arrList) {
         let arr = arrList.split("\n");
-        itemList += `<li class="other__item"><a href="${arr[1]}">${arr[0]}</a></li>`;
+        itemList += `<li class="other__item"><a href="${arr[1]}">${arr[0]}</a></li>\n`;
       });
     }
     return itemList;
@@ -189,7 +189,7 @@ export default class whm {
     if (list !== "-" && list !== "" && list !== "- no need") {
       array.forEach(function(arrList) {
         let arr = arrList.split("\n");
-        itemList += `<li class="other-country__item"><div class="heritage__button heritage__button--other-country"><a href="${arr[1]}">${arr[0]}</a></div></li>`;
+        itemList += `<li class="other-country__item"><div class="heritage__button heritage__button--other-country"><a href="${arr[1]}">${arr[0]}</a></div></li>\n`;
       });
     }
     return itemList;
