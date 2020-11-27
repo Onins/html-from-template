@@ -150,7 +150,7 @@ export default class whm {
   }
 
   generateSlider(num) {
-    if(num !== "") {
+    if(num !== "" || num !== "none") {
       let i;
       let slideItem = "";
       for(i = 1; i <= num; i++) {
@@ -954,7 +954,7 @@ export default class whm {
             name: ${this.coordinates ? this.coordinates.heritage[0] : ""},
             lat: ${this.coordinates ? this.coordinates.heritage[1] : ""},
             lng: ${this.coordinates ? this.coordinates.heritage[2] : ""},
-            src: '/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_mv.jpg', //画像
+              src: '/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_mv.jpg', //画像
             // english: 'Grand Canyon', //※空白かコメントアウトで表示消せます
           };
           /* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
