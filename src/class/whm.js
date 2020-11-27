@@ -26,8 +26,10 @@ export default class whm {
   est_travel_days = "";
   direction_jp_details = "";
   his_overseas_branch = "";
+  other_countries_travel_pc = "";
+  other_wh_pc = "";
 
-  constructor(big_area_jp, big_area_en, area_code, country_jp, country_en, country_code_2, country_code_3, city_code, seo_keyword, registered_name_en, en_pass, sliders_count, meta_description, meta_keyword, name, headline, explanatory_text, staff_rec_pts, heritage_type, reg_year, time_diff_jp, best_season, flight_time, tour_avg_budget, est_travel_days, direction_jp_details, his_overseas_branch)
+  constructor(big_area_jp, big_area_en, area_code, country_jp, country_en, country_code_2, country_code_3, city_code, seo_keyword, registered_name_en, en_pass, sliders_count, meta_description, meta_keyword, name, headline, explanatory_text, staff_rec_pts, heritage_type, reg_year, time_diff_jp, best_season, flight_time, tour_avg_budget, est_travel_days, direction_jp_details, his_overseas_branch, other_countries_travel_pc, other_wh_pc)
   {
     this.big_area_jp = big_area_jp;
     this.big_area_en = big_area_en;
@@ -56,6 +58,8 @@ export default class whm {
     this.est_travel_days = est_travel_days;
     this.direction_jp_details = direction_jp_details;
     this.his_overseas_branch = his_overseas_branch;
+    this.other_countries_travel_pc = other_countries_travel_pc;
+    this.other_wh_pc = other_wh_pc;
   }
 
   formatParagraph(text) {
@@ -71,15 +75,39 @@ export default class whm {
 
   overseasBranch(detail) {
     let branch = detail.split("\n");
-    let detailText;
+    let detailText = "";
     if (detail !== "-" && detail !== "" && detail !== "- no need") {
       detailText = `<p class="direction-detail__text">この世界遺産がある国には、HISの現地支店がございます。<a href="${branch[0]}">>>${branch[1]}</a><br />お客様の安心で快適な旅をサポートします。</p>`;
-    } else {
-      detailText = "";
     }
     return detailText;
   }
 
+  otherCountriesTravel(list) {
+    let content = list.replace(/▼/g, '');
+    let array = content.split("\n\n");
+    let itemList = "";
+    if (list !== "-" && list !== "" && list !== "- no need") {
+      array.forEach(function(arrList) {
+        let arr = arrList.split("\n");
+        itemList += `<li class="other__item"><a href="${arr[1]}">${arr[0]}</a></li>`;
+      });
+    }
+    return itemList;
+  }
+
+  otherWH(list) {
+    let content = list.replace(/▼/g, '');
+    let array = content.split("\n\n");
+    let itemList = "";
+    if (list !== "-" && list !== "" && list !== "- no need") {
+      array.forEach(function(arrList) {
+        let arr = arrList.split("\n");
+        itemList += `<li class="other-country__item"><div class="heritage__button heritage__button--other-country"><a href="${arr[1]}">${arr[0]}</a></div></li>`;
+      });
+    }
+    return itemList;
+  }
+ 
   getTemplate()
   {
     return `
@@ -707,13 +735,8 @@ export default class whm {
                   <div class="other">
                     <div class="other__block">
                       <h5 class="other__title">その他の${this.country_jp}旅行</h5>
-                      <ul class="other__list"> "inside of its <li></li> can be [AW]"
-                        <li class="other__item"><a href="https://www.his-j.com/dst/america.htm">アメリカ旅行</a></li>
-                        <li class="other__item"><a href="https://www.his-j.com/dst/lasvegas.htm">ラスベガス旅行</a></li>
-                        <li class="other__item"><a href="https://www.his-j.com/dst/losangeles.htm">ロサンゼルス旅行</a></li>
-                        <li class="other__item"><a href="https://www.his-j.com/dst/boston.htm">ボストン旅行</a></li>
-                        <li class="other__item"><a href="https://www.his-j.com/dst/newyork.htm">ニューヨーク旅行</a></li>
-                        <li class="other__item"><a href="https://www.his-j.com/dst/orlando.htm">オーランド旅行</a></li>
+                      <ul class="other__list">
+                        ${this.other_countries_travel_pc}
                       </ul>
                       <ul class="other__list">
                         <li class="other__item"><a href="https://www.his-j.com/dst/sandiego.htm">サンディエゴ旅行</a></li>
@@ -779,13 +802,8 @@ export default class whm {
                     <p class="title__text title__text--long">その他の${this.big_area_jp}の国の世界遺産を探す</p>
                     <img src="/world-heritage/img/english_title/othercountries.svg" alt="Other Countries" />
                   </h3>
-                  <ul class="other-country__list"> "insede of its <li></li> can be [AY]"
-                    <li class="other-country__item">
-                      <div class="heritage__button heritage__button--other-country"><a href="">アメリカ</a></div>
-                    </li>
-                    <li class="other-country__item">
-                      <div class="heritage__button heritage__button--other-country"><a href="">カナダ</a></div>
-                    </li>
+                  <ul class="other-country__list">
+                    ${this.other_wh_pc}
                   </ul>
                 </div>
               </section>

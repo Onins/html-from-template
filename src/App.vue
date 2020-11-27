@@ -105,11 +105,15 @@ export default {
         data.tour_avg_budget,
         data.est_travel_days,
         data.direction_jp_details,
-        data.his_overseas_branch
+        data.his_overseas_branch,
+        data.other_countries_travel_pc,
+        data.other_wh_pc
       );
       country.explanatory_text = country.formatParagraph(data.explanatory_text);
       country.staff_rec_pts = country.formatParagraph(data.staff_rec_pts);
       country.his_overseas_branch = country.overseasBranch(data.his_overseas_branch);
+      country.other_countries_travel_pc = country.otherCountriesTravel(data.other_countries_travel_pc);
+      country.other_wh_pc = country.otherWH(data.other_wh_pc);
       return country.getTemplate();
     }
   }
