@@ -161,9 +161,9 @@ export default class whm {
   }
 
   overseasBranch(detail) {
-    let branch = detail.split("\n");
+    let branch = detail !== "none" ? detail.split("\n") : false;
     let detailText = "";
-    if (detail !== "-" && detail !== "" && detail !== "- no need") {
+    if (branch) {
       detailText = `<p class="direction-detail__text">この世界遺産がある国には、HISの現地支店がございます。<a href="${branch[0]}">>>${branch[1]}</a><br />お客様の安心で快適な旅をサポートします。</p>`;
     }
     return detailText;
@@ -171,9 +171,9 @@ export default class whm {
 
   otherCountriesTravel(list) {
     let content = list.replace(/▼/g, '');
-    let array = content.split("\n\n");
+    let array = content !== "none" ? content.split("\n\n") : false;
     let itemList = "";
-    if (list !== "-" && list !== "" && list !== "- no need") {
+    if (array) {
       array.forEach(function(arrList) {
         let arr = arrList.split("\n");
         itemList += `<li class="other__item"><a href="${arr[1]}">${arr[0]}</a></li>\n`;
@@ -184,9 +184,9 @@ export default class whm {
 
   otherWH(list) {
     let content = list.replace(/▼/g, '');
-    let array = content.split("\n\n");
+    let array = content !== "none" ? content.split("\n\n") : false;
     let itemList = "";
-    if (list !== "-" && list !== "" && list !== "- no need") {
+    if (array) {
       array.forEach(function(arrList) {
         let arr = arrList.split("\n");
         itemList += `<li class="other-country__item"><div class="heritage__button heritage__button--other-country"><a href="${arr[1]}">${arr[0]}</a></div></li>\n`;
