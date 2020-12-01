@@ -118,6 +118,7 @@ export default {
       country.other_countries_travel_pc = country.otherCountriesTravel(data.other_countries_travel_pc);
       country.other_wh_pc = country.otherWH(data.other_wh_pc);
       country.sliders_count = country.generateSlider(data.sliders_count);
+      country.direction_jp_overview = country.formatDirection(data.direction_jp_overview);
       return country.getTemplate();
     }
   }

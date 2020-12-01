@@ -25,14 +25,47 @@ export default class whm {
   flight_time = "";
   tour_avg_budget = "";
   est_travel_days = "";
-  direction_jp_details = "";
+  direction_jp_overview = "";
+  direction_jp_details = [];
   his_overseas_branch = "";
   other_countries_travel_pc = "";
   other_wh_pc = "";
   long_lat_fjp_tsite = "";
   coordinates = "";
 
-  constructor(big_area_jp, big_area_en, area_code, country_jp, country_en, country_code_2, country_code_3, city_code, seo_keyword, registered_name_en, en_pass, sliders_count, meta_description, meta_keyword, name, headline, explanatory_text, staff_rec_pts, heritage_type, reg_year, time_diff_jp, best_season, flight_time, tour_avg_budget, est_travel_days, direction_jp_details, his_overseas_branch, other_countries_travel_pc, other_wh_pc, long_lat_fjp_tsite, coordinates)
+  constructor(
+    big_area_jp, 
+    big_area_en, 
+    area_code, 
+    country_jp, 
+    country_en, 
+    country_code_2, 
+    country_code_3, 
+    city_code, 
+    seo_keyword, 
+    registered_name_en, 
+    en_pass, 
+    sliders_count, 
+    meta_description, 
+    meta_keyword, 
+    name, 
+    headline, 
+    explanatory_text, 
+    staff_rec_pts, 
+    heritage_type, 
+    reg_year, 
+    time_diff_jp,
+    best_season, 
+    flight_time, 
+    tour_avg_budget,
+    est_travel_days,
+    direction_jp_details, 
+    his_overseas_branch, 
+    other_countries_travel_pc, 
+    other_wh_pc, 
+    long_lat_fjp_tsite, 
+    coordinates
+    )
   {
     this.big_area_jp = big_area_jp;
     this.big_area_en = big_area_en;
@@ -193,6 +226,47 @@ export default class whm {
       });
     }
     return itemList;
+  }
+
+  formatDirection(details) {
+    let group = details.split("\n\n");
+    let objList = [];
+    let childList = [];
+
+    if (group.length > 1 && details != ""){
+      objList.push(group[0].split("\n")[1].split(": ").pop());
+      if (group.length > 2) {
+        for(let i = 1; i < group.length - 1; i++) {
+          let elem = [];
+          let groupList = [];
+
+          groupList.push(group[i].split("\n")[0].replace(/■/g, ''));
+          groupList.push(group[i].split("\n").slice(1))    
+          
+          groupList.forEach((item, index )=> {
+            if (index == 0) {
+              elem.push(`<div class="direction-detail__item-inner"><p class="direction-detail__place">${item}</p></div>`);
+            }
+            else {
+              let children = [];
+
+              item.forEach(child => {
+                children.push(`<p class="direction-detail__time direction-detail__time--${child.split(": ")[0]}">${child.split(": ").pop()}</p>`)
+              });
+              elem.push(`<div class="direction-detail__item-inner">${children.join("")}</div>`)
+            }
+          });
+          childList.push(`<li class="direction-detail__item">${elem.join("")}</li>`);
+        }
+        objList.push(childList.join(""));
+      }
+      objList.push(group[group.length - 1].replace(/■/g, ''));
+    }
+
+    else {
+      return false;
+    }
+    return objList;
   }
  
   getTemplate()
@@ -515,21 +589,12 @@ export default class whm {
                     <div class="direction-detail__inner">
                       <ul class="direction-detail__list">
                         <li class="direction-detail__item">
-                          <p class="direction-detail__place">日本</p>
-                          <p class="direction-detail__time direction-detail__time--plane">[AH①]{約11時間}</p>
+                          <p class="direction-detail__place">${this.direction_jp_overview.length > 1 ? "日本" :""}</p>
+                          <p class="direction-detail__time direction-detail__time--plane">${this.direction_jp_overview.length > 1 ? this.direction_jp_overview[0]: ""}</p>
                         </li>
+                        ${this.direction_jp_overview.length > 2 ? this.direction_jp_overview[1] : ""}
                         <li class="direction-detail__item">
-                          <div class="direction-detail__item-inner">
-                            <p class="direction-detail__place">[AH②]{インド デリー}</p>
-                            <!-- <p class="direction-detail__place">ラスベガス</p> -->
-                          </div>
-                          <div class="direction-detail__item-inner">
-                            <p class="direction-detail__time direction-detail__time--plane">[AH③]{約40分}</p>
-                            <p class="direction-detail__time direction-detail__time--bus">[AH④]{約2時間}</p>
-                          </div>
-                        </li>
-                        <li class="direction-detail__item">
-                          <p class="direction-detail__place">[AH⑤]{タージ・マハル}</p>
+                          <p class="direction-detail__place">${this.direction_jp_overview.length > 1 ? this.direction_jp_overview[this.direction_jp_overview.length - 1]: ""}</p>
                         </li>
                       </ul>
                     </div>
