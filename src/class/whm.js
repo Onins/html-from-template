@@ -200,12 +200,12 @@ export default class whm {
 
   }
 
-  formatParagraph(text) {
+  formatParagraph(text, className) {
     let array = text !== "" ? text.split("\n\n") : false;
     let paragraphs = "";
     if (array) {
       array.forEach((paragraph) => {
-        paragraphs += `<p class="description__text">${paragraph}</p>`;
+        paragraphs += `<p class="${className}">${paragraph}</p>`;
       });
       return paragraphs;
     }
@@ -223,9 +223,9 @@ export default class whm {
   }
 
   overseasBranch(detail) {
-    let branch = detail.split("\n");
+    let branch = detail !== "none" ? detail.split("\n") : false;
     let detailText = "";
-    if (detail !== "-" && detail !== "" && detail !== "- no need") {
+    if (branch) {
       detailText = `<p class="direction-detail__text">この世界遺産がある国には、HISの現地支店がございます。<a href="${branch[0]}">>>${branch[1]}</a><br />お客様の安心で快適な旅をサポートします。</p>`;
     }
     return detailText;
@@ -233,9 +233,9 @@ export default class whm {
 
   otherCountriesTravel(list) {
     let content = list.replace(/▼/g, '');
-    let array = content.split("\n\n");
+    let array = content !== "none" ? content.split("\n\n") : false;
     let itemList = "";
-    if (list !== "-" && list !== "" && list !== "- no need") {
+    if (array) {
       array.forEach(function(arrList) {
         let arr = arrList.split("\n");
         itemList += `<li class="other__item"><a href="${arr[1]}">${arr[0]}</a></li>\n`;
@@ -246,9 +246,9 @@ export default class whm {
 
   otherWH(list) {
     let content = list.replace(/▼/g, '');
-    let array = content.split("\n\n");
+    let array = content !== "none" ? content.split("\n\n") : false;
     let itemList = "";
-    if (list !== "-" && list !== "" && list !== "- no need") {
+    if (array) {
       array.forEach(function(arrList) {
         let arr = arrList.split("\n");
         itemList += `<li class="other-country__item"><div class="heritage__button heritage__button--other-country"><a href="${arr[1]}">${arr[0]}</a></div></li>\n`;
@@ -1005,21 +1005,21 @@ export default class whm {
           };
           // 到着地
           const dest = {
-            name: ${this.coordinates ? this.coordinates.dest[0] : ""},
+            name: '${this.coordinates ? this.coordinates.dest[0] : ""}',
             lat: ${this.coordinates ? this.coordinates.dest[1] : ""},
             lng: ${this.coordinates ? this.coordinates.dest[2] : ""},
           };
 
 
           const dest2 = {
-            name: ${this.coordinates ? this.coordinates.dest2[0] : ""},
+            name: '${this.coordinates ? this.coordinates.dest2[0] : ""}',
             lat: ${this.coordinates ? this.coordinates.dest2[1] : ""},
             lng: ${this.coordinates ? this.coordinates.dest2[2] : ""},
           };
 
           // 世界遺産
           const heritage = {
-            name: ${this.coordinates ? this.coordinates.heritage[0] : ""},
+            name: '${this.coordinates ? this.coordinates.heritage[0] : ""}',
             lat: ${this.coordinates ? this.coordinates.heritage[1] : ""},
             lng: ${this.coordinates ? this.coordinates.heritage[2] : ""},
               src: '/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_mv.jpg', //画像
