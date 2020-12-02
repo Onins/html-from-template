@@ -116,7 +116,6 @@ export default {
       country.staff_rec_pts = country.formatParagraph(data.staff_rec_pts);
       country.coordinates = country.formatCoordinates(country.long_lat_fjp_tsite);
       country.other_wh_sites_pc = country.formatOtherWhSites(country.other_wh_sites_pc);
-      console.log(country.other_wh_sites_pc);
       country.his_overseas_branch = country.overseasBranch(data.his_overseas_branch);
       country.other_countries_travel_pc = country.otherCountriesTravel(data.other_countries_travel_pc);
       country.other_wh_pc = country.otherWH(data.other_wh_pc);
