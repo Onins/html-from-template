@@ -31,7 +31,6 @@ export default class whm {
   other_countries_travel_pc = "";
   other_wh_pc = "";
   long_lat_fjp_tsite = "";
-  coordinates = "";
   other_wh_sites_pc = "";
 
   constructor(
@@ -65,7 +64,6 @@ export default class whm {
     other_countries_travel_pc,
     other_wh_pc,
     long_lat_fjp_tsite,
-    coordinates,
     other_wh_sites_pc
     )
   {
@@ -99,7 +97,6 @@ export default class whm {
     this.other_countries_travel_pc = other_countries_travel_pc;
     this.other_wh_pc = other_wh_pc;
     this.long_lat_fjp_tsite = long_lat_fjp_tsite;
-    this.coordinates = coordinates;
     this.other_wh_sites_pc = other_wh_sites_pc;
   }
 
@@ -130,72 +127,42 @@ export default class whm {
   }
 
   formatCoordinates(coordinates) {
-    let array = coordinates !== "" ? coordinates.split("\n") : "";
-    let res;
-    let dest = [];
-    let dest2 = [];
-    let heritage = [];
-    let longLat;
+    let array = coordinates !== "" ? coordinates.split("\n\n") : "";
+    let longLat = "";
 
     if (array) {
-      res = array.filter(n => n);
-      res.forEach((el, index) => {
-        index = index+1;
-
-        //DEST
-        if (index <= 2) {
-          if (index !== 2) {
-            dest.push(el);
-          }else {
-            longLat = el.split(",");
-            longLat.forEach((el) => {
-              let filterTxt = el.split('').shift();
-              if (filterTxt === "@") {
-                dest.push(el.substring(1));
-              }else {
-                dest.push(el);
-              }
-            });
-          }
+      let data = array[array.length -1].split("\n");
+          longLat += `
+          // 到着地
+          const dest = {
+            name: "${(array[0].split('/'))[0].slice(0, -1)}",
+            lat: "${(array[0].split(','))[1].substring(1)}",
+            lng: "${(array[0].split(','))[1]}",
+          };
+          `
+      if (array.length > 2) {
+        for(let x=1; x < array.length-1; x++) {
+          longLat += `
+          // 到着地
+          const dest${x+1} = {
+            name: "${(array[x].split('/'))[0].slice(0, -1)}",
+            lat: "${(array[x].split(','))[1].substring(1)}",
+            lng: "${(array[x].split(','))[1]}",
+          };
+          `
         }
+      }
 
-        //DEST2
-        if (index > 2 && index <= 4) {
-          if (index !== 4) {
-            dest2.push(el);
-          }else {
-            longLat = el.split(",");
-            longLat.forEach((el) => {
-              let filterTxt = el.split('').shift();
-              if (filterTxt === "@") {
-                dest2.push(el.substring(1));
-              }else {
-                dest2.push(el);
-              }
-            });
-          }
-        }
-
-        //HERITAGE
-        if (index > 4 && index <= 6) {
-          if (index !== 6) {
-            heritage.push(el);
-          }else {
-            longLat = el.split(",");
-            longLat.forEach((el) => {
-              let filterTxt = el.split('').shift();
-              if (filterTxt === "@") {
-                heritage.push(el.substring(1));
-              }else {
-                heritage.push(el);
-              }
-            });
-          }
-        }
-
-      });
-
-      return {dest, dest2, heritage}
+      longLat += `
+          // 世界遺産
+          const heritage = {
+            name: "${data[0].slice(0, -1)}",
+            lat: "${ data[1] ? (data[1].split(','))[0].substring(1) : '' }",
+            lng: "${ data[1] ? (data[1].split(','))[1] : '' }",
+            src: '/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_mv.jpg', //画像
+          };
+      `
+      return longLat;
     }
 
   }
@@ -1003,28 +970,9 @@ export default class whm {
             lat: 35.763889, // 緯度
             lng: 140.391667, // 経度
           };
-          // 到着地
-          const dest = {
-            name: ${this.coordinates ? this.coordinates.dest[0] : ""},
-            lat: ${this.coordinates ? this.coordinates.dest[1] : ""},
-            lng: ${this.coordinates ? this.coordinates.dest[2] : ""},
-          };
 
+          ${this.long_lat_fjp_tsite}
 
-          const dest2 = {
-            name: ${this.coordinates ? this.coordinates.dest2[0] : ""},
-            lat: ${this.coordinates ? this.coordinates.dest2[1] : ""},
-            lng: ${this.coordinates ? this.coordinates.dest2[2] : ""},
-          };
-
-          // 世界遺産
-          const heritage = {
-            name: ${this.coordinates ? this.coordinates.heritage[0] : ""},
-            lat: ${this.coordinates ? this.coordinates.heritage[1] : ""},
-            lng: ${this.coordinates ? this.coordinates.heritage[2] : ""},
-              src: '/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_mv.jpg', //画像
-            // english: 'Grand Canyon', //※空白かコメントアウトで表示消せます
-          };
           /* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
         </script>
         <script src="/world-heritage/js/details.js"></script>

@@ -109,13 +109,12 @@ export default {
         data.other_countries_travel_pc,
         data.other_wh_pc,
         data.long_lat_fjp_tsite,
-        data.coordinates,
         data.other_wh_sites_pc
       );
       country.explanatory_text = country.formatParagraph(data.explanatory_text);
       country.staff_rec_pts = country.formatParagraph(data.staff_rec_pts);
-      country.coordinates = country.formatCoordinates(country.long_lat_fjp_tsite);
-      country.other_wh_sites_pc = country.formatOtherWhSites(country.other_wh_sites_pc);
+      country.long_lat_fjp_tsite = country.formatCoordinates(data.long_lat_fjp_tsite);
+      country.other_wh_sites_pc = country.formatOtherWhSites(data.other_wh_sites_pc);
       country.his_overseas_branch = country.overseasBranch(data.his_overseas_branch);
       country.other_countries_travel_pc = country.otherCountriesTravel(data.other_countries_travel_pc);
       country.other_wh_pc = country.otherWH(data.other_wh_pc);
