@@ -32,39 +32,41 @@ export default class whm {
   other_wh_pc = "";
   long_lat_fjp_tsite = "";
   coordinates = "";
+  other_wh_sites_pc = "";
 
   constructor(
-    big_area_jp, 
-    big_area_en, 
-    area_code, 
-    country_jp, 
-    country_en, 
-    country_code_2, 
-    country_code_3, 
-    city_code, 
-    seo_keyword, 
-    registered_name_en, 
-    en_pass, 
-    sliders_count, 
-    meta_description, 
-    meta_keyword, 
-    name, 
-    headline, 
-    explanatory_text, 
-    staff_rec_pts, 
-    heritage_type, 
-    reg_year, 
+    big_area_jp,
+    big_area_en,
+    area_code,
+    country_jp,
+    country_en,
+    country_code_2,
+    country_code_3,
+    city_code,
+    seo_keyword,
+    registered_name_en,
+    en_pass,
+    sliders_count,
+    meta_description,
+    meta_keyword,
+    name,
+    headline,
+    explanatory_text,
+    staff_rec_pts,
+    heritage_type,
+    reg_year,
     time_diff_jp,
-    best_season, 
-    flight_time, 
+    best_season,
+    flight_time,
     tour_avg_budget,
     est_travel_days,
-    direction_jp_details, 
-    his_overseas_branch, 
-    other_countries_travel_pc, 
-    other_wh_pc, 
-    long_lat_fjp_tsite, 
-    coordinates
+    direction_jp_details,
+    his_overseas_branch,
+    other_countries_travel_pc,
+    other_wh_pc,
+    long_lat_fjp_tsite,
+    coordinates,
+    other_wh_sites_pc
     )
   {
     this.big_area_jp = big_area_jp;
@@ -98,6 +100,33 @@ export default class whm {
     this.other_wh_pc = other_wh_pc;
     this.long_lat_fjp_tsite = long_lat_fjp_tsite;
     this.coordinates = coordinates;
+    this.other_wh_sites_pc = other_wh_sites_pc;
+  }
+
+  formatOtherWhSites(content) {
+    let array = content !== "" ? content.split("\n\n") : "";
+    let list = "";
+    let mvImgUrl;
+    if (array) {
+      array.forEach((el) => {
+        if(el !== "none") {
+          mvImgUrl = el.includes("https") ? el.split("/") : "";
+          mvImgUrl = `/${mvImgUrl[3]}/${mvImgUrl[4]}/${mvImgUrl[5]}/img/${mvImgUrl[6]}_mv.jpg`
+          list += `
+          <li class="heritage__item">
+            <a class="heritage__item-inner" href="${(el.split("\n")[1]).slice(0, -1)}.html">
+              <p class="heritage__img">
+                <img class="object-fit" src=${mvImgUrl} alt="${ (el.split("\n")[0]).substring(1) }" />
+              </p>
+              <p class="heritage__tag">アメリカ</p>
+              <p class="heritage__name">${ (el.split("\n")[0]).substring(1) }</p>
+            </a>
+          </li>
+          `
+        }
+      });
+      return list;
+    }
   }
 
   formatCoordinates(coordinates) {
@@ -241,8 +270,8 @@ export default class whm {
           let groupList = [];
 
           groupList.push(group[i].split("\n")[0].replace(/■/g, ''));
-          groupList.push(group[i].split("\n").slice(1))    
-          
+          groupList.push(group[i].split("\n").slice(1))
+
           groupList.forEach((item, index )=> {
             if (index == 0) {
               elem.push(`<div class="direction-detail__item-inner"><p class="direction-detail__place">${item}</p></div>`);
@@ -268,7 +297,7 @@ export default class whm {
     }
     return objList;
   }
- 
+
   getTemplate()
   {
     return `
@@ -461,7 +490,7 @@ export default class whm {
                     <p class="title__text title__text--short">${this.headline}</p>
                     <img src="/world-heritage/img/english_title/description.svg" alt="Description" />
                   </h3>
-                  
+
                   <ul class="slick">
                     ${this.sliders_count}
                   </ul>
@@ -888,40 +917,14 @@ export default class whm {
                 </div>
               </section>
 
-              <section class="heritage">
+              <section class="heritage" ${this.other_wh_sites_pc ? '' : 'style="display: none"'}>
                 <div class="heritage__inner">
                   <h3 class="title">
                     <p class="title__text title__text--short">その他のアメリカの世界遺産</p>
                     <img src="/world-heritage/img/english_title/otherworldheritage.svg" alt="Other World Heritage" />
                   </h3>
                   <ul class="heritage__list">
-                    <li class="heritage__item">
-                      <a class="heritage__item-inner" href="/world-heritage/asia/india/yellowstone.html">
-                        <p class="heritage__img">
-                          <img class="object-fit" src="/world-heritage/asia/india/img/yellowstone-thumb.jpg" alt="イエローストーン国立公園" />
-                        </p>
-                        <p class="heritage__tag">アメリカ</p>
-                        <p class="heritage__name">イエローストーン国立公園</p>
-                      </a>
-                    </li>
-                    <li class="heritage__item">
-                      <a class="heritage__item-inner" href="/world-heritage/asia/india/hawaii-volcanoes.html">
-                        <p class="heritage__img">
-                          <img class="object-fit" src="/world-heritage/asia/india/img/hawaii-volcanoes-thumb.jpg" alt="キラウエア火山" />
-                        </p>
-                        <p class="heritage__tag">アメリカ</p>
-                        <p class="heritage__name">キラウエア火山</p>
-                      </a>
-                    </li>
-                    <li class="heritage__item">
-                      <a class="heritage__item-inner" href="/world-heritage/asia/india/yosemite.html">
-                        <p class="heritage__img">
-                          <img class="object-fit" src="/world-heritage/asia/india/img/yosemite-thumb.jpg" alt="ヨセミテ国立公園" />
-                        </p>
-                        <p class="heritage__tag">アメリカ</p>
-                        <p class="heritage__name">ヨセミテ国立公園</p>
-                      </a>
-                    </li>
+                    ${this.other_wh_sites_pc ? this.other_wh_sites_pc : "<li></li>"}
                   </ul>
                 </div>
               </section>
