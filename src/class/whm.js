@@ -115,7 +115,7 @@ export default class whm {
               <p class="heritage__img">
                 <img class="object-fit" src=${mvImgUrl} alt="${ (el.split("\n")[0]).substring(1) }" />
               </p>
-              <p class="heritage__tag">アメリカ</p>
+              <p class="heritage__tag">${this.country_jp}</p>
               <p class="heritage__name">${ (el.split("\n")[0]).substring(1) }</p>
             </a>
           </li>
@@ -145,7 +145,7 @@ export default class whm {
           longLat += `
           // 到着地
           const dest${x+1} = {
-            name: ${(array[x].split('/'))[0].slice(0, -1)},
+            name: "${(array[x].split('/'))[0].slice(0, -1)}",
             lat: ${(array[x].split(','))[1].substring(1)},
             lng: ${(array[x].split(','))[1]},
           };
@@ -887,7 +887,7 @@ export default class whm {
               <section class="heritage" ${this.other_wh_sites_pc ? '' : 'style="display: none"'}>
                 <div class="heritage__inner">
                   <h3 class="title">
-                    <p class="title__text title__text--short">その他のアメリカの世界遺産</p>
+                    <p class="title__text title__text--short">その他の${this.country_jp}の世界遺産</p>
                     <img src="/world-heritage/img/english_title/otherworldheritage.svg" alt="Other World Heritage" />
                   </h3>
                   <ul class="heritage__list">
