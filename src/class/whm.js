@@ -131,7 +131,6 @@ export default class whm {
     let longLat = "";
 
     if (array) {
-      console.log(this.country_code_2+":", array)
       let data = array[array.length -1].split("\n");
           longLat += `
           // 到着地
@@ -163,7 +162,6 @@ export default class whm {
             src: '/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_mv.jpg', //画像
           };
       `
-      console.log(longLat)
       return longLat;
     }
 
