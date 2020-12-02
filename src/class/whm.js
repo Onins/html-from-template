@@ -136,8 +136,8 @@ export default class whm {
           // 到着地
           const dest = {
             name: "${(array[0].split('/'))[0].slice(0, -1)}",
-            lat: "${(array[0].split(','))[1].substring(1)}",
-            lng: "${(array[0].split(','))[1]}",
+            lat: ${(array[0].split(','))[1].substring(1)},
+            lng: ${(array[0].split(','))[1]},
           };
           `
       if (array.length > 2) {
@@ -145,9 +145,9 @@ export default class whm {
           longLat += `
           // 到着地
           const dest${x+1} = {
-            name: "${(array[x].split('/'))[0].slice(0, -1)}",
-            lat: "${(array[x].split(','))[1].substring(1)}",
-            lng: "${(array[x].split(','))[1]}",
+            name: ${(array[x].split('/'))[0].slice(0, -1)},
+            lat: ${(array[x].split(','))[1].substring(1)},
+            lng: ${(array[x].split(','))[1]},
           };
           `
         }
@@ -157,8 +157,8 @@ export default class whm {
           // 世界遺産
           const heritage = {
             name: "${data[0].slice(0, -1)}",
-            lat: "${ data[1] ? (data[1].split(','))[0].substring(1) : '' }",
-            lng: "${ data[1] ? (data[1].split(','))[1] : '' }",
+            lat: ${ data[1] ? (data[1].split(','))[0].substring(1) : '' },
+            lng: ${ data[1] ? (data[1].split(','))[1] : '' },
             src: '/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_mv.jpg', //画像
           };
       `
