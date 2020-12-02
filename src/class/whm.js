@@ -1002,21 +1002,21 @@ export default class whm {
           };
           // 到着地
           const dest = {
-            name: ${this.coordinates ? this.coordinates.dest[0] : ""},
+            name: '${this.coordinates ? this.coordinates.dest[0] : ""}',
             lat: ${this.coordinates ? this.coordinates.dest[1] : ""},
             lng: ${this.coordinates ? this.coordinates.dest[2] : ""},
           };
 
 
           const dest2 = {
-            name: ${this.coordinates ? this.coordinates.dest2[0] : ""},
+            name: '${this.coordinates ? this.coordinates.dest2[0] : ""}',
             lat: ${this.coordinates ? this.coordinates.dest2[1] : ""},
             lng: ${this.coordinates ? this.coordinates.dest2[2] : ""},
           };
 
           // 世界遺産
           const heritage = {
-            name: ${this.coordinates ? this.coordinates.heritage[0] : ""},
+            name: '${this.coordinates ? this.coordinates.heritage[0] : ""}',
             lat: ${this.coordinates ? this.coordinates.heritage[1] : ""},
             lng: ${this.coordinates ? this.coordinates.heritage[2] : ""},
               src: '/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_mv.jpg', //画像
