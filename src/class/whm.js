@@ -888,7 +888,7 @@ export default class whm {
                 </div>
               </section>
 
-              <section class="heritage">
+              <!--<section class="heritage">
                 <div class="heritage__inner">
                   <h3 class="title">
                     <p class="title__text title__text--short">その他のアメリカの世界遺産</p>
@@ -924,7 +924,7 @@ export default class whm {
                     </li>
                   </ul>
                 </div>
-              </section>
+              </section>-->
 
               <section class="other-country">
                 <div class="other-country__inner">
