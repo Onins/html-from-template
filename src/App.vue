@@ -111,8 +111,8 @@ export default {
         data.long_lat_fjp_tsite,
         data.other_wh_sites_pc
       );
-      country.explanatory_text = country.formatParagraph(data.explanatory_text);
-      country.staff_rec_pts = country.formatParagraph(data.staff_rec_pts);
+      country.explanatory_text = country.formatParagraph(data.explanatory_text, "description__text");
+      country.staff_rec_pts = country.formatParagraph(data.staff_rec_pts, "topics__sentence");
       country.long_lat_fjp_tsite = country.formatCoordinates(data.long_lat_fjp_tsite);
       country.other_wh_sites_pc = country.formatOtherWhSites(data.other_wh_sites_pc);
       country.his_overseas_branch = country.overseasBranch(data.his_overseas_branch);

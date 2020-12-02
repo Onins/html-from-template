@@ -115,7 +115,7 @@ export default class whm {
               <p class="heritage__img">
                 <img class="object-fit" src=${mvImgUrl} alt="${ (el.split("\n")[0]).substring(1) }" />
               </p>
-              <p class="heritage__tag">アメリカ</p>
+              <p class="heritage__tag">${this.country_jp}</p>
               <p class="heritage__name">${ (el.split("\n")[0]).substring(1) }</p>
             </a>
           </li>
@@ -146,7 +146,7 @@ export default class whm {
           longLat += `
           // 到着地
           const dest${x+1} = {
-            name: ${(array[x].split('/'))[0].slice(0, -1)},
+            name: "${(array[x].split('/'))[0].slice(0, -1)}",
             lat: ${array[x].split('\n')[1].split(',')[0].substring(1)},
             lng: ${(array[x].split(','))[1]},
           };
@@ -169,12 +169,12 @@ export default class whm {
 
   }
 
-  formatParagraph(text) {
+  formatParagraph(text, className) {
     let array = text !== "" ? text.split("\n\n") : false;
     let paragraphs = "";
     if (array) {
       array.forEach((paragraph) => {
-        paragraphs += `<p class="description__text">${paragraph}</p>`;
+        paragraphs += `<p class="${className}">${paragraph}</p>`;
       });
       return paragraphs;
     }
@@ -192,9 +192,9 @@ export default class whm {
   }
 
   overseasBranch(detail) {
-    let branch = detail.split("\n");
+    let branch = detail !== "none" ? detail.split("\n") : false;
     let detailText = "";
-    if (detail !== "-" && detail !== "" && detail !== "- no need") {
+    if (branch) {
       detailText = `<p class="direction-detail__text">この世界遺産がある国には、HISの現地支店がございます。<a href="${branch[0]}">>>${branch[1]}</a><br />お客様の安心で快適な旅をサポートします。</p>`;
     }
     return detailText;
@@ -202,9 +202,9 @@ export default class whm {
 
   otherCountriesTravel(list) {
     let content = list.replace(/▼/g, '');
-    let array = content.split("\n\n");
+    let array = content !== "none" ? content.split("\n\n") : false;
     let itemList = "";
-    if (list !== "-" && list !== "" && list !== "- no need") {
+    if (array) {
       array.forEach(function(arrList) {
         let arr = arrList.split("\n");
         itemList += `<li class="other__item"><a href="${arr[1]}">${arr[0]}</a></li>\n`;
@@ -215,9 +215,9 @@ export default class whm {
 
   otherWH(list) {
     let content = list.replace(/▼/g, '');
-    let array = content.split("\n\n");
+    let array = content !== "none" ? content.split("\n\n") : false;
     let itemList = "";
-    if (list !== "-" && list !== "" && list !== "- no need") {
+    if (array) {
       array.forEach(function(arrList) {
         let arr = arrList.split("\n");
         itemList += `<li class="other-country__item"><div class="heritage__button heritage__button--other-country"><a href="${arr[1]}">${arr[0]}</a></div></li>\n`;
@@ -889,7 +889,7 @@ export default class whm {
               <section class="heritage" ${this.other_wh_sites_pc ? '' : 'style="display: none"'}>
                 <div class="heritage__inner">
                   <h3 class="title">
-                    <p class="title__text title__text--short">その他のアメリカの世界遺産</p>
+                    <p class="title__text title__text--short">その他の${this.country_jp}の世界遺産</p>
                     <img src="/world-heritage/img/english_title/otherworldheritage.svg" alt="Other World Heritage" />
                   </h3>
                   <ul class="heritage__list">
