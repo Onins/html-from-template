@@ -135,7 +135,7 @@ export default class whm {
           longLat += `
           // 到着地
           const dest = {
-            name: "${(array[0].split('/'))[0].slice(0, -1)}",
+            name: "${(array[0].split('\n'))[0].slice(0, -1)}",
             lat: ${array[0].split('\n')[1].split(',')[0].substring(1)},
             lng: ${(array[0].split(','))[1]},
           };
@@ -145,7 +145,7 @@ export default class whm {
           longLat += `
           // 到着地
           const dest${x+1} = {
-            name: "${(array[x].split('/'))[0].slice(0, -1)}",
+            name: "${(array[x].split('\n'))[0].slice(0, -1)}",
             lat: ${array[x].split('\n')[1].split(',')[0].substring(1)},
             lng: ${(array[x].split(','))[1]},
           };
