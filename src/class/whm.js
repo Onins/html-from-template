@@ -31,7 +31,6 @@ export default class whm {
   other_countries_travel_pc = "";
   other_wh_pc = "";
   long_lat_fjp_tsite = "";
-  coordinates = "";
   other_wh_sites_pc = "";
 
   constructor(
@@ -65,7 +64,6 @@ export default class whm {
     other_countries_travel_pc,
     other_wh_pc,
     long_lat_fjp_tsite,
-    coordinates,
     other_wh_sites_pc
     )
   {
@@ -99,7 +97,6 @@ export default class whm {
     this.other_countries_travel_pc = other_countries_travel_pc;
     this.other_wh_pc = other_wh_pc;
     this.long_lat_fjp_tsite = long_lat_fjp_tsite;
-    this.coordinates = coordinates;
     this.other_wh_sites_pc = other_wh_sites_pc;
   }
 
@@ -118,7 +115,7 @@ export default class whm {
               <p class="heritage__img">
                 <img class="object-fit" src=${mvImgUrl} alt="${ (el.split("\n")[0]).substring(1) }" />
               </p>
-              <p class="heritage__tag">アメリカ</p>
+              <p class="heritage__tag">${this.country_jp}</p>
               <p class="heritage__name">${ (el.split("\n")[0]).substring(1) }</p>
             </a>
           </li>
@@ -130,82 +127,52 @@ export default class whm {
   }
 
   formatCoordinates(coordinates) {
-    let array = coordinates !== "" ? coordinates.split("\n") : "";
-    let res;
-    let dest = [];
-    let dest2 = [];
-    let heritage = [];
-    let longLat;
+    let array = coordinates !== "" ? coordinates.split("\n\n") : "";
+    let longLat = "";
 
     if (array) {
-      res = array.filter(n => n);
-      res.forEach((el, index) => {
-        index = index+1;
-
-        //DEST
-        if (index <= 2) {
-          if (index !== 2) {
-            dest.push(el);
-          }else {
-            longLat = el.split(",");
-            longLat.forEach((el) => {
-              let filterTxt = el.split('').shift();
-              if (filterTxt === "@") {
-                dest.push(el.substring(1));
-              }else {
-                dest.push(el);
-              }
-            });
-          }
+      let data = array[array.length -1].split("\n");
+          longLat += `
+          // 到着地
+          const dest = {
+            name: "${(array[0].split('\n'))[0].slice(0, -1)}",
+            lat: ${array[0].split('\n')[1].split(',')[0].substring(1)},
+            lng: ${(array[0].split(','))[1]},
+          };
+          `
+      if (array.length > 2) {
+        for(let x=1; x < array.length-1; x++) {
+          longLat += `
+          // 到着地
+          const dest${x+1} = {
+            name: "${(array[x].split('\n'))[0].slice(0, -1)}",
+            lat: ${array[x].split('\n')[1].split(',')[0].substring(1)},
+            lng: ${(array[x].split(','))[1]},
+          };
+          `
         }
+      }
 
-        //DEST2
-        if (index > 2 && index <= 4) {
-          if (index !== 4) {
-            dest2.push(el);
-          }else {
-            longLat = el.split(",");
-            longLat.forEach((el) => {
-              let filterTxt = el.split('').shift();
-              if (filterTxt === "@") {
-                dest2.push(el.substring(1));
-              }else {
-                dest2.push(el);
-              }
-            });
-          }
-        }
-
-        //HERITAGE
-        if (index > 4 && index <= 6) {
-          if (index !== 6) {
-            heritage.push(el);
-          }else {
-            longLat = el.split(",");
-            longLat.forEach((el) => {
-              let filterTxt = el.split('').shift();
-              if (filterTxt === "@") {
-                heritage.push(el.substring(1));
-              }else {
-                heritage.push(el);
-              }
-            });
-          }
-        }
-
-      });
-
-      return {dest, dest2, heritage}
+      longLat += `
+          // 世界遺産
+          const heritage = {
+            name: "${data[0].slice(0, -1)}",
+            lat: ${ data[1] ? (data[1].split(','))[0].substring(1) : '' },
+            lng: ${ data[1] ? (data[1].split(','))[1] : '' },
+            src: '/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_mv.jpg', //画像
+          };
+      `
+      return longLat;
     }
 
   }
 
-  formatParagraph(text) {
+  formatParagraph(text, className) {
     let array = text !== "" ? text.split("\n\n") : false;
     let paragraphs = "";
     if (array) {
       array.forEach((paragraph) => {
-        paragraphs += `<p class="description__text">${paragraph}</p>`;
+        paragraphs += `<p class="${className}">${paragraph}</p>`;
       });
       return paragraphs;
     }
@@ -223,9 +190,9 @@ export default class whm {
   }
 
   overseasBranch(detail) {
-    let branch = detail.split("\n");
+    let branch = detail !== "none" ? detail.split("\n") : false;
     let detailText = "";
-    if (detail !== "-" && detail !== "" && detail !== "- no need") {
+    if (branch) {
       detailText = `<p class="direction-detail__text">この世界遺産がある国には、HISの現地支店がございます。<a href="${branch[0]}">>>${branch[1]}</a><br />お客様の安心で快適な旅をサポートします。</p>`;
     }
     return detailText;
@@ -233,9 +200,9 @@ export default class whm {
 
   otherCountriesTravel(list) {
     let content = list.replace(/▼/g, '');
-    let array = content.split("\n\n");
+    let array = content !== "none" ? content.split("\n\n") : false;
     let itemList = "";
-    if (list !== "-" && list !== "" && list !== "- no need") {
+    if (array) {
       array.forEach(function(arrList) {
         let arr = arrList.split("\n");
         itemList += `<li class="other__item"><a href="${arr[1]}">${arr[0]}</a></li>\n`;
@@ -246,9 +213,9 @@ export default class whm {
 
   otherWH(list) {
     let content = list.replace(/▼/g, '');
-    let array = content.split("\n\n");
+    let array = content !== "none" ? content.split("\n\n") : false;
     let itemList = "";
-    if (list !== "-" && list !== "" && list !== "- no need") {
+    if (array) {
       array.forEach(function(arrList) {
         let arr = arrList.split("\n");
         itemList += `<li class="other-country__item"><div class="heritage__button heritage__button--other-country"><a href="${arr[1]}">${arr[0]}</a></div></li>\n`;
@@ -920,7 +887,7 @@ export default class whm {
               <section class="heritage" ${this.other_wh_sites_pc ? '' : 'style="display: none"'}>
                 <div class="heritage__inner">
                   <h3 class="title">
-                    <p class="title__text title__text--short">その他のアメリカの世界遺産</p>
+                    <p class="title__text title__text--short">その他の${this.country_jp}の世界遺産</p>
                     <img src="/world-heritage/img/english_title/otherworldheritage.svg" alt="Other World Heritage" />
                   </h3>
                   <ul class="heritage__list">
@@ -1003,28 +970,9 @@ export default class whm {
             lat: 35.763889, // 緯度
             lng: 140.391667, // 経度
           };
-          // 到着地
-          const dest = {
-            name: ${this.coordinates ? this.coordinates.dest[0] : ""},
-            lat: ${this.coordinates ? this.coordinates.dest[1] : ""},
-            lng: ${this.coordinates ? this.coordinates.dest[2] : ""},
-          };
 
+          ${this.long_lat_fjp_tsite}
 
-          const dest2 = {
-            name: ${this.coordinates ? this.coordinates.dest2[0] : ""},
-            lat: ${this.coordinates ? this.coordinates.dest2[1] : ""},
-            lng: ${this.coordinates ? this.coordinates.dest2[2] : ""},
-          };
-
-          // 世界遺産
-          const heritage = {
-            name: ${this.coordinates ? this.coordinates.heritage[0] : ""},
-            lat: ${this.coordinates ? this.coordinates.heritage[1] : ""},
-            lng: ${this.coordinates ? this.coordinates.heritage[2] : ""},
-              src: '/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_mv.jpg', //画像
-            // english: 'Grand Canyon', //※空白かコメントアウトで表示消せます
-          };
           /* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
         </script>
         <script src="/world-heritage/js/details.js"></script>
