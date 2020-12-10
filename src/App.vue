@@ -66,15 +66,20 @@ export default {
     },
 
     downloadHtml() {
-      let zip = new JSZip();
-      let vm = this;
-      for(let i = 0; i < vm.jsonOutput.length; i++) {
-        zip.file(`${vm.jsonOutput[i].en_pass}.html`, this.updateTemplate(vm.jsonOutput[i]));
+      if (this.fileInput != "") {
+        let zip = new JSZip();
+        let vm = this;
+        for(let i = 0; i < vm.jsonOutput.length; i++) {
+          zip.file(`${vm.jsonOutput[i].en_pass}.html`, this.updateTemplate(vm.jsonOutput[i]));
+        }
+        zip.generateAsync({type:"blob"})
+        .then(function(content) {
+          saveAs(content, "world-heritage.zip");
+        });
       }
-      zip.generateAsync({type:"blob"})
-      .then(function(content) {
-        saveAs(content, "world-heritage.zip");
-      });
+      else {
+        alert("Please select CSV file")
+      }
     },
 
     updateTemplate(data) {
