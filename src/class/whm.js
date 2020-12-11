@@ -981,7 +981,7 @@ http://www.omniture.com -->
     <script type="text/javascript" language="JavaScript">
       <!--
       /* You may give each page an identifying name, server, and channel on the next lines. */
-      s.pageName="OTHER>all>世界遺産の旅>アジア>中国>万里の長城"
+      s.pageName="OTHER>all>世界遺産の旅>${this.big_area_jp}>${this.country_jp}>${this.name}"
       s.prop39="1"
       /* Conversion Variables */
       s.events=""

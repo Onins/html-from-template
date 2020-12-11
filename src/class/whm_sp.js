@@ -304,7 +304,7 @@ export default class whm {
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://www.his-j.com/world-heritage/${this.big_area_en}/${this.country_en}/${this.en_pass}/index_sp.html" />
         <meta property="og:site_name" content="HIS海外・国内総合旅行予約サイト" />
-        <meta property="og:image" content="https://www.his-j.com/cmn/images/ogp.png" />
+        <meta property="og:image" content="https://www.his-j.com/world-heritage/img/ogp.png" />
         <meta property="og:description" content="${this.meta_description}"/>
         <meta property="fb:app_id" content="222347251136850" />
 
@@ -1011,25 +1011,15 @@ export default class whm {
         <script src="/world-heritage/js/details_sp.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?client=gme-hiscoltd&channel=all_all&v=quarterly&callback=initMap"></script>
 
-        <script type="text/javascript">
-          <!--
-          var track_title = "★★ダミー★★";
-          var track_id = "";
-          var track_portaltop_id = "";
-          //-->
-        </script>
         <!-- SiteCatalyst code version: H.14.Copyright 1997-2007 Omniture, Inc. More info available at http://www.omniture.com -->
-        <script language="JavaScript" src="//e.his-j.com/js/s_code_sp.js"></script>
-        <script>
-          <!--
-          s.pageName = track_title;
-          s.prop6 = track_id;
-          if (track_portaltop_id != '') s.eVar46 = track_portaltop_id;
-          s.events = "";
-          var s_code = s.t();
-          if (s_code) document.write(s_code)
-          //-->
-        </script>
+        <script type="text/javascript" language="JavaScript" src="//e.his-j.com/js/s_code_sp.js" charset="Shift_JIS"></script>
+        <script language="JavaScript"><!--
+        /* You may give each page an identifying name, server, and channel on the next lines. */
+        s.pageName="【全国】世界遺産の旅-${this.big_area_jp}-${this.country_jp}-${this.name}"
+        /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+        var s_code=s.t();if(s_code)document.write(s_code)
+        //--></script>
+        <!--/DO NOT REMOVE/-->
         <!-- End SiteCatalyst code version: H.14. -->
 
         <!-- Yahoo Tag Manager -->
