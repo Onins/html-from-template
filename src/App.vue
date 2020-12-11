@@ -77,7 +77,7 @@ export default {
 
         for(let i = 0; i < vm.jsonOutput.length; i++) {
           zip.file(`PC/${vm.jsonOutput[i].en_pass}.html`, this.updateTemplate(vm.jsonOutput[i]));
-          zip.file(`SP/${vm.jsonOutput[i].en_pass}.html`, this.updateTemplateSp(vm.jsonOutput[i]));
+          zip.file(`SP/${vm.jsonOutput[i].en_pass}_sp.html`, this.updateTemplateSp(vm.jsonOutput[i]));
         }
 
         zip.generateAsync({type:"blob"})
