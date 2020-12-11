@@ -303,7 +303,7 @@ export default class whm {
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://www.his-j.com/world-heritage/${this.big_area_en}/${this.country_en}/${this.en_pass}/" />
     <meta property="og:site_name" content="HIS海外・国内総合旅行予約サイト" />
-    <meta property="og:image" content="https://www.his-j.comhttps://www.his-j.com/cmn/images/ogp.png" />
+    <meta property="og:image" content="https://www.his-j.com/world-heritage/img/ogp.png" />
     <meta property="og:description" content="${this.meta_description}" />
     <meta property="fb:app_id" content="222347251136850" />
 
@@ -981,7 +981,7 @@ http://www.omniture.com -->
     <script type="text/javascript" language="JavaScript">
       <!--
       /* You may give each page an identifying name, server, and channel on the next lines. */
-      s.pageName="OTHER>all>★★ダミー★★"
+      s.pageName="OTHER>all>世界遺産の旅>アジア>中国>万里の長城"
       s.prop39="1"
       /* Conversion Variables */
       s.events=""
