@@ -162,6 +162,7 @@ export default class whm {
             src: '/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_mv.jpg', //画像
           };
       `
+      console.log(longLat)
       return longLat;
     }
 
@@ -469,7 +470,7 @@ export default class whm {
                   <p class="description__text">
                     現在の形になったのは14世紀・明の時代。
                     約2000年にわたり、数百万人の農民たちと30万の兵士、膨大な量の煉瓦と石とで造られた、気の遠くなるような壮大なプロジェクトだ。
-                  </p>  
+                  </p>
                   <p class="description__text">
                     アクセスしやすいポイントは、中心地から2時間程度で行ける北京市内の長城。
                     観光コースが整備されているのは「八達嶺（はったつれい）」。
@@ -1002,20 +1003,9 @@ export default class whm {
             lat: 35.763889, // 緯度
             lng: 140.391667, // 経度
           };
-          // 到着地
-          const dest = {
-            name: ${this.coordinates ? this.coordinates.dest[0] : ""},
-            lat: ${this.coordinates ? this.coordinates.dest[1] : ""},
-            lng: ${this.coordinates ? this.coordinates.dest[2] : ""},
-          };
-          // 世界遺産
-          const heritage = {
-            name: ${this.coordinates ? this.coordinates.heritage[0] : ""},
-            lat: ${this.coordinates ? this.coordinates.heritage[1] : ""},
-            lng: ${this.coordinates ? this.coordinates.heritage[2] : ""},
-            src: '/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}-thumb_sp.jpg', //画像
-            // english: 'Grand Canyon', //※空白かコメントアウトで表示消せます
-          };
+
+          ${this.long_lat_fjp_tsite}
+
           /* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
         </script>
         <script src="/world-heritage/js/details_sp.js"></script>
