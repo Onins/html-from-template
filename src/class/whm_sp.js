@@ -622,32 +622,32 @@ export default class whm {
                 <div class="grid-row grid-row--narrowGutter js-toggleOnClick" data-target-group=".categoryWrapper">
                   <div class="grid-col3 js-countTabs js-toggleControl toggleControl--active" data-target="#category01">
                     <div class="recommend__tab">
-                      <a class="recommend__tab-text recommend__tab-text--tour" href="https://tour.his-j.com/ct/sp/search/02A_10/USA/USA/GCN/">ツアー</a>
+                      <a class="recommend__tab-text recommend__tab-text--tour" href="https://tour.his-j.com/ct/sp/search/02A_10/${this.area_code}/${this.country_code_3}/">ツアー</a>
                     </div>
                   </div>
-                  <div class="grid-col3 js-countTabs js-toggleControl" data-target="#category02">
+                  <div class="grid-col3 js-countTabs js-toggleControl toggleControl--active" data-target="#category02">
                     <div class="recommend__tab">
                       <a class="recommend__tab-text recommend__tab-text--ticket-hotel" href="https://www.his-j.com/kaigai/air-hotel/Default_sp.aspx">航空券<br />＋<br />ホテル</a>
                     </div>
                   </div>
-                  <div class="grid-col3 js-countTabs js-toggleControl" data-target="#category03">
+                  <div class="grid-col3 js-countTabs js-toggleControl toggleControl--active" data-target="#category03">
                     <div class="recommend__tab">
-                      <a class="recommend__tab-text recommend__tab-text--ticket" href="https://www.his-j.com/kaigai/air/north-america/america/las/index_sp.html">航空券</a>
+                      <a class="recommend__tab-text recommend__tab-text--ticket" href="https://air.his-j.com/${this.country_code_2}/">航空券</a>
                     </div>
                   </div>
-                  <div class="grid-col3 js-countTabs js-toggleControl" data-target="#category04">
+                  <div class="grid-col3 js-countTabs js-toggleControl toggleControl--active" data-target="#category04">
                     <div class="recommend__tab">
-                      <a class="recommend__tab-text recommend__tab-text--hotel" href="https://hotels.his-j.com/sp/HotelList/GCN/">ホテル</a>
+                      <a class="recommend__tab-text recommend__tab-text--hotel" href="https://hotels.his-j.com/sp/HotelList/${this.city_code}/">ホテル</a>
                     </div>
                   </div>
-                  <div class="grid-col3 js-countTabs js-toggleControl" data-target="#category05">
+                  <div class="grid-col3 js-countTabs js-toggleControl toggleControl--active" data-target="#category05">
                     <div class="recommend__tab">
-                      <a class="recommend__tab-text recommend__tab-text--optional-tour" href="https://activities.his-j.com/SightSeeing/O2/USA/S0047/">オプショナル<br />ツアー</a>
+                      <a class="recommend__tab-text recommend__tab-text--optional-tour" href="https://activities.his-j.com/NationTop/${this.country_code_3}/">オプショナル<br />ツアー</a>
                     </div>
                   </div>
-                  <div class="grid-col3 js-countTabs js-toggleControl" data-target="#category06">
+                  <div class="grid-col3 js-countTabs js-toggleControl toggleControl--active" data-target="#category06">
                     <div class="recommend__tab">
-                      <a class="recommend__tab-text recommend__tab-text--car" href="https://cars.his-j.com/sp/RtfCarList.aspx?PickupCityCd=LAS">レンタカー</a>
+                      <a class="recommend__tab-text recommend__tab-text--car" href="https://cars.his-j.com/sp/RtfCarList.aspx?PickupCityCd=${this.city_code}">レンタカー</a>
                     </div>
                   </div>
                 </div>
