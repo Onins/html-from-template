@@ -184,7 +184,7 @@ export default class whm {
       let i;
       let slideItem = "";
       for(i = 1; i <= num; i++) {
-        slideItem += `<li><img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}_main0${i}.jpg" alt="${this.name}" /></li>\n`
+        slideItem += `<li><img class="object-fit" src="/world-heritage/${this.big_area_en}/${this.country_en}/img/${this.en_pass}-main0${i}.jpg" alt="${this.name}" /></li>\n`
       }
       return slideItem;
     }
