@@ -914,7 +914,7 @@ export default class whm {
           <section class="heritage" ${this.other_wh_sites_sp ? '' : 'style="display: none"'}>
             <div class="heritage__inner">
               <h3 class="title">
-                <p class="title__text title__text--heritage">その他のアメリカの世界遺産</p>
+                <p class="title__text title__text--heritage">その他の${this.country_jp}の世界遺産</p>
                 <p class="title__img">
                   <img src="/world-heritage/img/english_title/otherworldheritage.svg" alt="Other World Heritage" />
                 </p>
