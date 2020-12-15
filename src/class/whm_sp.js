@@ -8,6 +8,7 @@ export default class whm {
   country_code_3 = "";
   city_code = "";
   seo_keyword = "";
+  registered_name_jp = "";
   registered_name_en = "";
   en_pass = "";
   sliders_count = "";
@@ -28,10 +29,10 @@ export default class whm {
   direction_jp_overview = "";
   direction_jp_details = [];
   his_overseas_branch = "";
-  other_countries_travel_pc = "";
-  other_wh_pc = "";
+  other_countries_travel_sp = "";
+  other_wh_sp = "";
   long_lat_fjp_tsite = "";
-  other_wh_sites_pc = "";
+  other_wh_sites_sp = "";
 
   constructor(
     big_area_jp,
@@ -43,6 +44,7 @@ export default class whm {
     country_code_3,
     city_code,
     seo_keyword,
+    registered_name_jp,
     registered_name_en,
     en_pass,
     sliders_count,
@@ -61,10 +63,10 @@ export default class whm {
     est_travel_days,
     direction_jp_details,
     his_overseas_branch,
-    other_countries_travel_pc,
-    other_wh_pc,
+    other_countries_travel_sp,
+    other_wh_sp,
     long_lat_fjp_tsite,
-    other_wh_sites_pc
+    other_wh_sites_sp
     )
   {
     this.big_area_jp = big_area_jp;
@@ -76,6 +78,7 @@ export default class whm {
     this.country_code_3 = country_code_3;
     this.city_code = city_code;
     this.seo_keyword = seo_keyword;
+    this.registered_name_jp = registered_name_jp;
     this.registered_name_en = registered_name_en;
     this.en_pass = en_pass;
     this.sliders_count = sliders_count;
@@ -94,10 +97,10 @@ export default class whm {
     this.est_travel_days = est_travel_days;
     this.direction_jp_details = direction_jp_details;
     this.his_overseas_branch = his_overseas_branch;
-    this.other_countries_travel_pc = other_countries_travel_pc;
-    this.other_wh_pc = other_wh_pc;
+    this.other_countries_travel_sp = other_countries_travel_sp;
+    this.other_wh_sp = other_wh_sp;
     this.long_lat_fjp_tsite = long_lat_fjp_tsite;
-    this.other_wh_sites_pc = other_wh_sites_pc;
+    this.other_wh_sites_sp = other_wh_sites_sp;
   }
 
   formatOtherWhSites(content) {
@@ -111,7 +114,7 @@ export default class whm {
           mvImgUrl = `/${mvImgUrl[3]}/${mvImgUrl[4]}/${mvImgUrl[5]}/img/${mvImgUrl[6]}_mv.jpg`
           list += `
           <li class="heritage__item">
-            <a class="heritage__item-inner" href="${(el.split("\n")[1]).slice(0, -1)}.html">
+            <a class="heritage__item-inner" href="${(el.split("\n")[1])}">
               <p class="heritage__img">
                 <img class="object-fit" src=${mvImgUrl} alt="${ (el.split("\n")[0]).substring(1) }" />
               </p>
@@ -494,7 +497,7 @@ export default class whm {
                     </p>
                   </div>
                   <p class="information__item-title">登録名</p>
-                  <p class="information__item-data">${this.name}<br />${this.registered_name_en}</p>
+                  <p class="information__item-data">${this.registered_name_jp}<br />${this.registered_name_en}</p>
                 </li>
                 <li class="information__item">
                   <div class="information__item-img-outer">
@@ -901,14 +904,14 @@ export default class whm {
                 <div class="other__block">
                   <h5 class="other__title">その他の${this.country_jp}旅行</h5>
                   <ul class="other__list">
-                    ${this.other_countries_travel_pc}
+                    ${this.other_countries_travel_sp}
                   </ul>
                 </div>
               </div>
             </div>
           </section>
 
-          <section class="heritage" ${this.other_wh_sites_pc ? '' : 'style="display: none"'}>
+          <section class="heritage" ${this.other_wh_sites_sp ? '' : 'style="display: none"'}>
             <div class="heritage__inner">
               <h3 class="title">
                 <p class="title__text title__text--heritage">その他のアメリカの世界遺産</p>
@@ -917,7 +920,7 @@ export default class whm {
                 </p>
               </h3>
               <ul class="heritage__list">
-                ${this.other_wh_sites_pc ? this.other_wh_sites_pc : "<li></li>"}
+                ${this.other_wh_sites_sp ? this.other_wh_sites_sp : "<li></li>"}
               </ul>
             </div>
           </section>
@@ -931,7 +934,7 @@ export default class whm {
                 </p>
               </h3>
               <ul class="other-country__list">
-                ${this.other_wh_pc}
+                ${this.other_wh_sp}
               </ul>
             </div>
           </section>

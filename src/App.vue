@@ -101,6 +101,7 @@ export default {
         data.country_code_3,
         data.city_code,
         data.seo_keyword,
+        data.registered_name_jp,
         data.registered_name_en,
         data.en_pass,
         data.sliders_count,
@@ -147,6 +148,7 @@ export default {
         data.country_code_3,
         data.city_code,
         data.seo_keyword,
+        data.registered_name_jp,
         data.registered_name_en,
         data.en_pass,
         data.sliders_count,
@@ -165,18 +167,18 @@ export default {
         data.est_travel_days,
         data.direction_jp_details,
         data.his_overseas_branch,
-        data.other_countries_travel_pc,
-        data.other_wh_pc,
+        data.other_countries_travel_sp,
+        data.other_wh_sp,
         data.long_lat_fjp_tsite,
-        data.other_wh_sites_pc
+        data.other_wh_sites_sp
       );
       country.explanatory_text = country.formatParagraph(data.explanatory_text, "description__text");
       country.staff_rec_pts = country.formatParagraph(data.staff_rec_pts, "topics__sentence");
       country.long_lat_fjp_tsite = country.formatCoordinates(data.long_lat_fjp_tsite);
-      country.other_wh_sites_pc = country.formatOtherWhSites(data.other_wh_sites_pc);
+      country.other_wh_sites_sp = country.formatOtherWhSites(data.other_wh_sites_sp);
       country.his_overseas_branch = country.overseasBranch(data.his_overseas_branch);
-      country.other_countries_travel_pc = country.otherCountriesTravel(data.other_countries_travel_pc);
-      country.other_wh_pc = country.otherWH(data.other_wh_pc);
+      country.other_countries_travel_sp = country.otherCountriesTravel(data.other_countries_travel_sp);
+      country.other_wh_sp = country.otherWH(data.other_wh_sp);
       country.sliders_count = country.generateSlider(data.sliders_count);
       country.direction_jp_overview = country.formatDirection(data.direction_jp_overview);
       return country.getTemplate();

@@ -8,6 +8,7 @@ export default class whm {
   country_code_3 = "";
   city_code = "";
   seo_keyword = "";
+  registered_name_jp = "";
   registered_name_en = "";
   en_pass = "";
   sliders_count = "";
@@ -43,6 +44,7 @@ export default class whm {
     country_code_3,
     city_code,
     seo_keyword,
+    registered_name_jp,
     registered_name_en,
     en_pass,
     sliders_count,
@@ -76,6 +78,7 @@ export default class whm {
     this.country_code_3 = country_code_3;
     this.city_code = city_code;
     this.seo_keyword = seo_keyword;
+    this.registered_name_jp = registered_name_jp;
     this.registered_name_en = registered_name_en;
     this.en_pass = en_pass;
     this.sliders_count = sliders_count;
@@ -111,7 +114,7 @@ export default class whm {
           mvImgUrl = `/${mvImgUrl[3]}/${mvImgUrl[4]}/${mvImgUrl[5]}/img/${mvImgUrl[6]}_mv.jpg`
           list += `
           <li class="heritage__item">
-            <a class="heritage__item-inner" href="${(el.split("\n")[1]).slice(0, -1)}.html">
+            <a class="heritage__item-inner" href="${(el.split("\n")[1])}">
               <p class="heritage__img">
                 <img class="object-fit" src=${mvImgUrl} alt="${ (el.split("\n")[0]).substring(1) }" />
               </p>
@@ -491,7 +494,7 @@ export default class whm {
                     </p>
                   </div>
                   <p class="information__item-title">登録名</p>
-                  <p class="information__item-data">${this.name}<br />${this.registered_name_en}</p>
+                  <p class="information__item-data">${this.registered_name_jp}<br />${this.registered_name_en}</p>
                 </li>
                 <li class="information__item-double">
                   <div class="information__item-inner">
