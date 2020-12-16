@@ -363,7 +363,7 @@ export default class whm {
     <!--SPでアクセス時にSPページへリダイレクト-->
     <script type="text/javascript">
       if ((navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
-        var newPage = 'https://www.his-j.com/world-heritage/${this.big_area_en}/${this.country_en}/${this.en_pass}/index_sp.html';
+        var newPage = '/world-heritage/${this.big_area_en}/${this.country_en}/${this.en_pass}/index_sp.html';
         var redirectURL = location.origin + newPage + location.search;
         redirectURL += location.hash;
         location.href = redirectURL;
