@@ -1008,6 +1008,23 @@ http://www.omniture.com -->
       <iframe src="//b.yjtag.jp/iframe?c=b3mRptN" width="1" height="1" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
     </noscript>
     <!-- End Yahoo Tag Manager -->
+    <!-- Destination style -->
+    <script type="text/javascript">
+      let ready = () => {
+        let mapDest = document.querySelector('.destination');
+        let mapDestParent = document.querySelector('.destination__outer');
+        let mapBalloon = document.querySelector('.balloon__outer');
+        if (document.body && mapDest && mapBalloon) {
+          if(mapDest.textContent.length > 9) {
+            mapDest.setAttribute("style", "font-size: 14px; width: 150px;");
+          }
+          mapBalloon.classList.add('balloon__outer--${this.en_pass}');
+          mapDestParent.classList.add('destination__outer--${this.en_pass}');          
+        }
+        window.requestAnimationFrame(ready);
+      };
+      window.requestAnimationFrame(ready);
+    </script>
   </body>
 </html>`;
   }
